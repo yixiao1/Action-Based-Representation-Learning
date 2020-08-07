@@ -1,0 +1,6 @@
+{
+    "agent_name": "EXP_ETE_20Hours_1_encoder_finetunning_5Hours_1_100000",
+    "checkpoint": 100000,
+    "yaml": "configs/ENCODER/ETE_20Hours_2.yaml",
+    "encoder_params": "None"
+}
