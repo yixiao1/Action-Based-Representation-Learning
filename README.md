@@ -1,90 +1,53 @@
 # Action-Based Representation Learning for Autonomous Driving
 
 -------------------------------------------------------------
-This repository is for running the experiments of ICML project
+This repository is for running the experiments of paper: Action-Based Representation Learning for Autonomous Driving
 
 Basically, the processes can be defined as four steps:
 
- * Train an encoder model with specific losses, whose Conv. layers part will be later fine-tunned for prediciting affordances
- * Train FC layers for affordances outputs. Pre-trained encoder models will be fine-tunned
- * Validation on affordances prediction
- * Actual drive using affordances prediction
-
+ * Train an encoder model (Behaviour Cloning (BC), Inverse, Forward, ST-DIM)
+ * Train a MLP for affordances outputs. The Pre-trained encoder model need to be used.
+ * Validation on affordances prediction.
+ * Actual drive using controller tuned with affordances prediction.
 
 -------------------------------------------------------------
-### Data Collection (Affordances)
+### Datasets
 
-YOU CAN SKIP THIS PART IF YOU ALREADY HAD DATASETS
+1. Download the dataset with this [link]().
 
-1. Download [this repository](https://github.com/felipecode/cexp/tree/cexp_ICML) to get cexp folder
+2. Define the path of the dataset folder with SRL_DATASET_PATH:
 
-   Notes: The branch should be "cexp_ICML"
-
-2. Get into the cexp folder: cd ~./cexp
-
-3. The first thing you need to do is define the datasets folder.
-This is the folder that will contain your training and validation datasets
-
-   Example:
-
-        export SRL_DATASET_PATH = /home/yixiao/Datasets/ICML
-
-
-4. You need to add some paths to PYTHONPATH
-
-	 * Path to carla
-	 * Path to scenario_runner
-	 * Path to carla .egg file
-	 * Path to cexp
-
-   Example:
-
-        export PYTHONPATH=/home/yixiao/Carla96b/PythonAPI/carla/:/home/yixiao/scenario_runner:/home/yixiao/Carla96ped4/PythonAPI/carla/dist/carla-0.9.6-py3.5-linux-x86_64.egg:/datatmp/Experiments/yixiao/carl
-
-5. To get a dataset, you need to define a json file that concludes configurations of those episodes you want to collect, and put it into database folder
-
-   Refer to [This json file](https://github.com/felipecode/cexp/blob/cexp_ICML/database/dataset_dynamic_l0.json)
-
-6. Run multi_gpu_data_collection.py
-
-   Example:
-
-        python3  multi_gpu_data_collection.py  -j  /datatmp/Experiments/yixiao/carl/database/dataset_dynamic_l0.json  -ct  carlaped  -n 1  -ge 0
-
-   where `-j` is the FULL path of json file that you want to collect, `-ct` is the docker name, `-n` defines the number of dockers you want to use, `-ge` is the GPUs you DON'T want to use
-
+    export SRL_DATASET_PATH=<The path to your dataset folder>
 
 -------------------------------------------------------------
 ### Train Encoder
 
-1. The first thing you need to do is to define the datasets folder and add some path to PYTHONPATH, the same as Section Data Collection (Affordances) (Step 3 & 4)
+1. Your need to add some paths to your PYTHONPATH:
 
-2. You need to define configuration files for training. Refer to files in [configs folder](https://github.com/yixiao1/Coiltraine-ICML/tree/master/configs/ENCODER)
+	 export PYTHONPATH=<Path to carla>:<Path to scenario_runner>:<Path to carla .egg file>:<Path to cexp>
 
-3. Run coiltraine.py
+2. You need to define configuration files for training. Refer to files in [configs folder]()
 
-   Example:
+3. Run main file
 
-       python3 coiltraine.py --single-process train_encoder --gpus 0 -f ENCODER -e one_step_aff_15mins_2
-
-   where `--single-process` means to do a training for encoder, `--gpus` is the gpu you want to use, `-f` is the exp folder, `-e` is the exp file
+   python3 main.py --single-process train_encoder --gpus <the gpu id to be used> -f <the experiment folder> -e <the experiment name>
 
 -------------------------------------------------------------
 ### Train affordances
 
-1. The first thing you need to do is to define the datasets folder and add some path to PYTHONPATH, the same as Section Data Collection (Affordances) (Step 3 & 4)
+1. You need to define the path to the dataset folder with SRL_DATASET_PATH:
 
-2. You need to define configuration files for training. Refer to files in [configs folder](https://github.com/yixiao1/Coiltraine-ICML/tree/master/configs/EXP)
+    export SRL_DATASET_PATH=<The path to your dataset folder>
+
+2. Your need to add some paths to your PYTHONPATH:
+
+	 export PYTHONPATH=<Path to carla>:<Path to scenario_runner>:<Path to carla .egg file>:<Path to cexp>
+
+3. You need to define configuration files for training. Refer to files in [configs folder]()
 
 3. Run coiltraine.py
 
-   Example:
-
-       python3 coiltraine.py --single-process train --gpus 0 -f EXP -e ETE_5Hours_1_encoder_finetunning_1Hours_1 --encoder-folder ENCODER --encoder-exp ETE_5Hours_1 --encoder-checkpoint 100000
-
-
-   where `--single-process` means to do a training for affordances, `--gpus` is the gpu you want to use, `-f` is the exp folder, `-e` is the exp file,
-   `--encoder-folder` is the pre-trained encoder folder, `--encoder-exp` is the pre-trained encoder exp file, and `--encoder-checkpoint` is the pre-trained encoder checkpoint you want to use
+   python3 coiltraine.py --single-process train --gpus  <the gpu id to be used> -f <the experiment folder> -e <the experiment name> --encoder-folder <the experiment folder of encoder to be used> --encoder-exp <the experiment name of encoder to be used> --encoder-checkpoint <the checkpoint of encoder to be used>
 
 -------------------------------------------------------------
 ### Validate on affordances prediction
