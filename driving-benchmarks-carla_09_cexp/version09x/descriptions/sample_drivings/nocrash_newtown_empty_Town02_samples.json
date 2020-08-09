@@ -1,0 +1,16 @@
+{
+    "envs": {
+        "ClearSunset_route00001": {
+            "repetitions": 1,
+            "route": {
+                "file": "Town02_navigation.xml",
+                "id": 1
+            },
+            "scenarios": {},
+            "town_name": "Town02",
+            "vehicle_model": "vehicle.lincoln.mkz2017",
+            "weather_profile": "ClearSunset"
+        }
+    },
+    "package_name": "nocrash_newtown_empty_Town02_samples"
+}

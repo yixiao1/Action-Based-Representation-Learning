@@ -1,0 +1,73 @@
+{
+    "envs": {
+        "ClearNoon_route00001": {
+            "repetitions": 1,
+            "route": {
+                "file": "Town01_navigation.xml",
+                "id": 1
+            },
+            "scenarios": {
+                "background_activity": {
+                    "cross_factor": 0.5,
+                    "vehicle.*": 100,
+                    "walker.*": 400
+                }
+            },
+            "town_name": "Town01",
+            "vehicle_model": "vehicle.lincoln.mkz2017",
+            "weather_profile": "ClearNoon"
+        },
+        "ClearSunset_route00002": {
+            "repetitions": 1,
+            "route": {
+                "file": "Town01_navigation.xml",
+                "id": 2
+            },
+            "scenarios": {
+                "background_activity": {
+                    "cross_factor": 0.5,
+                    "vehicle.*": 100,
+                    "walker.*": 400
+                }
+            },
+            "town_name": "Town01",
+            "vehicle_model": "vehicle.lincoln.mkz2017",
+            "weather_profile": "ClearSunset"
+        },
+        "HardRainNoon_route00003": {
+            "repetitions": 1,
+            "route": {
+                "file": "Town01_navigation.xml",
+                "id": 3
+            },
+            "scenarios": {
+                "background_activity": {
+                    "cross_factor": 0.5,
+                    "vehicle.*": 100,
+                    "walker.*": 400
+                }
+            },
+            "town_name": "Town01",
+            "vehicle_model": "vehicle.lincoln.mkz2017",
+            "weather_profile": "HardRainNoon"
+        },
+        "WetNoon_route00004": {
+            "repetitions": 1,
+            "route": {
+                "file": "Town01_navigation.xml",
+                "id": 4
+            },
+            "scenarios": {
+                "background_activity": {
+                    "cross_factor": 0.5,
+                    "vehicle.*": 100,
+                    "walker.*": 400
+                }
+            },
+            "town_name": "Town01",
+            "vehicle_model": "vehicle.lincoln.mkz2017",
+            "weather_profile": "WetNoon"
+        }
+    },
+    "package_name": "nocrash_training_dense_Town01_samples"
+}

@@ -1,0 +1,4 @@
+step,episodes_completion,result,infractions_score,average_percentage_red_lights
+BC_im_50Hours_seed1_encoder_finetuning_3FC_30mins_s1,45.087148,0.000000,10.000000,0.250000
+BC_im_5Hours_seed1_encoder_finetuning_3FC_30mins_s1,49.854928,0.000000,8.750000,0.200000
+BC_im_50Hours_seed1_encoder_finetuning_3FC_5Hours_s1,56.214951,0.000000,26.250000,0.250000
