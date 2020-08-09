@@ -102,8 +102,7 @@ class CoILDataset(Dataset):
     """ The conditional imitation learning dataset"""
 
     def __init__(self, transform=None, preload_name=None,
-                 process_type = None, vd_json_file_path = None,
-                 clip_big_values=False):
+                 process_type = None, vd_json_file_path = None):
 
         # We add to the preload name all the remove labels
         if g_conf.REMOVE is not None and g_conf.REMOVE is not "None":
@@ -115,10 +114,6 @@ class CoILDataset(Dataset):
             self._remove_params = []
             self.preload_name = preload_name
 
-        #if g_conf.DATA_USED == 'all':
-        #    self.preload_name += '_RA_' + str(g_conf.AUGMENT_RELATIVE_ANGLE) + \
-        #                         '_RC_' + str(g_conf.AUGMENT_RA_CLIP)
-
         if self.preload_name is not None and os.path.exists(
                 os.path.join('_preloads', self.preload_name + '.npy')):
             print(" Loading from NPY: ", self.preload_name + '.npy')
@@ -129,12 +124,9 @@ class CoILDataset(Dataset):
                 print( '   ======> '+ key +' images: ', len(self.sensor_data_names[key]))
             print('   ======> measurements:', len(self.measurements))
 
-
-
         else:
             self.sensor_data_names, self.measurements = self._pre_load_image_folders(process_type,
-                                                                                     vd_json_file_path,
-                                                                                     clip_big_values)
+                                                                                     vd_json_file_path)
             for key in self.sensor_data_names.keys():
                 print( '   ======> '+ key+' images: ', len(self.sensor_data_names[key]))
 
@@ -174,8 +166,7 @@ class CoILDataset(Dataset):
                     #print (measurements)
 
             for sensor_name in self.sensor_data_names.keys():
-                if g_conf.ENCODER_MODEL_TYPE in ['stdim', 'action_prediction', 'ETE_inverse_model',
-                                                 'ETEDIM', 'forward_infonce', 'forward', 'FIMBC'] \
+                if g_conf.ENCODER_MODEL_TYPE in ['forward', 'action_prediction', 'stdim', 'ETE_inverse_model'] \
                         and g_conf.PROCESS_NAME in ['train_encoder']:
                     img = cv2.imread(self.sensor_data_names[sensor_name][index], cv2.IMREAD_COLOR)
                     ti = random.choice(g_conf.POSITIVE_CONSECUTIVE_THR)
@@ -187,8 +178,7 @@ class CoILDataset(Dataset):
                                                    index + ti * 3],
                                                cv2.IMREAD_COLOR)
 
-                            if g_conf.ENCODER_MODEL_TYPE in ['ETE_inverse_model',  'ETEDIM', 'forward', 'FIMBC',
-                                                             'action_prediction', 'stdim', 'forward_infonce']:
+                            if g_conf.ENCODER_MODEL_TYPE in ['forward', 'action_prediction', 'stdim', 'ETE_inverse_model']:
                                 measurements_i = self.measurements[index + ti * 3].copy()
                                 for k, v in measurements_i.items():
                                     try:
@@ -205,9 +195,7 @@ class CoILDataset(Dataset):
                                                    index + ti * 3 - (index%3)],
                                                cv2.IMREAD_COLOR)
 
-                            if g_conf.ENCODER_MODEL_TYPE in ['ETE_inverse_model', 'ETEDIM', 'forward', 'FIMBC',
-                                                             'action_prediction', 'stdim', 'forward_infonce'
-                                                             ]:
+                            if g_conf.ENCODER_MODEL_TYPE in ['forward', 'action_prediction', 'stdim', 'ETE_inverse_model']:
                                 measurements_i = self.measurements[index + ti * 3 - (index % 3)].copy()
                                 for k, v in measurements_i.items():
                                     try:
@@ -223,9 +211,7 @@ class CoILDataset(Dataset):
                             self.sensor_data_names[sensor_name][index + ti],
                             cv2.IMREAD_COLOR)
 
-                        if g_conf.ENCODER_MODEL_TYPE in ['ETE_inverse_model', 'ETEDIM', 'forward', 'FIMBC',
-                                                         'action_prediction', 'stdim',
-                                                         'forward_infonce']:
+                        if g_conf.ENCODER_MODEL_TYPE in ['forward', 'action_prediction', 'stdim', 'ETE_inverse_model']:
                             measurements_i = self.measurements[index + ti].copy()
                             for k, v in measurements_i.items():
                                 try:
@@ -379,15 +365,6 @@ class CoILDataset(Dataset):
         new_data_copy['measurements']['forward_speed'] = \
             data_point['measurements']['forward_speed'] / g_conf.SPEED_FACTOR
 
-        # we do normalization for relative angle
-        #if g_conf.DATA_USED == 'all':
-        #    new_data_copy['measurements']['relative_angle'] = \
-        #        (new_data_copy['measurements']['relative_angle']-(-math.pi+np.deg2rad(-30)))
-        #           / (2*math.pi + 2*np.deg2rad(30))
-        #elif g_conf.DATA_USED == 'central':
-        #    new_data_copy['measurements']['relative_angle'] = \
-        #        (new_data_copy['measurements']['relative_angle']-(-math.pi)) / (2*math.pi)
-
         for key in new_data_copy['measurements']:
             if key in ['is_pedestrian_hazard', 'is_red_tl_hazard', 'is_vehicle_hazard']:
                 new_data_copy['measurements'][key] = int(data_point['measurements'][key])
@@ -397,7 +374,7 @@ class CoILDataset(Dataset):
         del new_data_copy
 
 
-    def _pre_load_image_folders(self, process_type, vd_json_file_path, clip_big_values=False):
+    def _pre_load_image_folders(self, process_type, vd_json_file_path):
         """
         We preload a dataset compleetely and pre process if necessary by using the
         C-EX interface.
@@ -425,7 +402,6 @@ class CoILDataset(Dataset):
         else:
             jsonfile = g_conf.EXPERIENCE_FILE
 
-        #print('check json file',jsonfile)
 
         # We check one image at least to see if matches the size expected by the network
         checked_image = True
@@ -464,10 +440,6 @@ class CoILDataset(Dataset):
                                 del data_point['measurements']['closest_vehicle_distance']
                                 del data_point['measurements']['closest_red_tl_distance']
                                 del data_point['measurements']['closest_pedestrian_distance']
-                                if clip_big_values and \
-                                        math.fabs(data_point['measurements']['relative_angle']) > 0.7:
-                                    print (" WEIRD POINT")
-                                    continue
 
                                 self._add_data_point(float_dicts, data_point, 0)  # Some alteration
 
@@ -583,8 +555,7 @@ class CoILDataset(Dataset):
         """
 
         # here we have two frames' measurement, we pick up the latter one at time t+1
-        if g_conf.ENCODER_MODEL_TYPE in ['ETE_inverse_model', 'ETEDIM', 'forward', 'FIMBC',
-                                         'action_prediction', 'stdim', 'forward_infonce']:
+        if g_conf.ENCODER_MODEL_TYPE in ['forward', 'action_prediction', 'stdim', 'ETE_inverse_model']:
             targets_twoframes_vec = []
             for i in range(2):
                 targets_vec = []
@@ -657,8 +628,7 @@ class CoILDataset(Dataset):
         Raises
             value error when the configuration set targets that didn't exist in metadata
         """
-        if g_conf.ENCODER_MODEL_TYPE in ['ETE_inverse_model', 'ETEDIM', 'forward', 'FIMBC',
-                                         'action_prediction', 'stdim', 'forward_infonce'] \
+        if g_conf.ENCODER_MODEL_TYPE in ['forward', 'action_prediction', 'stdim', 'ETE_inverse_model'] \
                 and g_conf.PROCESS_NAME in ['train_encoder']:
             input_twoframes_vec = []
             for i in range(2):
@@ -695,8 +665,7 @@ class CoILDataset(Dataset):
         """
 
         # here we have two frames' measurement, we pick up the latter one at time t+1
-        if g_conf.ENCODER_MODEL_TYPE in ['ETE_inverse_model',  'ETEDIM', 'forward', 'FIMBC',
-                                         'action_prediction', 'stdim', 'forward_infonce'] \
+        if g_conf.ENCODER_MODEL_TYPE in ['forward', 'action_prediction', 'stdim', 'ETE_inverse_model'] \
                 and g_conf.PROCESS_NAME in ['train_encoder']:
             input_twoframes_vec = []
             for i in range(2):
@@ -751,8 +720,7 @@ class CoILDataset(Dataset):
 
         # here we have two frames' measurement, we pick up the latter one at time t+1
 
-        if g_conf.ENCODER_MODEL_TYPE in ['ETE_inverse_model', 'ETEDIM', 'forward', 'FIMBC',
-                                         'action_prediction', 'forward_infonce']:
+        if g_conf.ENCODER_MODEL_TYPE in ['forward', 'action_prediction', 'ETE_inverse_model']:
             targets_twoframes_vec = []
             for i in range(2):
                 targets_vec = []
@@ -793,43 +761,3 @@ class CoILDataset(Dataset):
                 targets_twoframes_vec.append(torch.cat(targets_vec, 1))
 
             return targets_twoframes_vec
-        """
-
-        elif g_conf.ENCODER_MODEL_TYPE in ['action_prediction']:
-            # we only consider action at previous frame for training this encoder
-            targets_vec = []
-            for target_name in g_conf.TARGETS:
-                target_c_f = torch.full(data[target_name].shape, 0)
-                # for two classes, we take the first part as 0 and the rest 1
-                if len(g_conf.ACTION_CLASS_RANGE[target_name]) == 1:
-                    target_c = torch.where(
-                        data[target_name] < g_conf.ACTION_CLASS_RANGE[target_name][0],
-                        torch.full(data[target_name].shape, 0),
-                        torch.full(data[target_name].shape, 1))
-                    targets_vec.append(target_c)
-
-                else:
-                    for bin_id in range(len(g_conf.ACTION_CLASS_RANGE[target_name])+1):
-                        if bin_id == 0:
-                            continue
-
-                        elif bin_id == len(g_conf.ACTION_CLASS_RANGE[target_name]):
-                            target_c = torch.where(
-                                data[target_name] >= g_conf.ACTION_CLASS_RANGE[target_name][-1],
-                                torch.full(data[target_name].shape, bin_id),
-                                torch.full(data[target_name].shape, 0))
-                        else:
-                            target_c_1 = torch.where(
-                                data[target_name] >= g_conf.ACTION_CLASS_RANGE[target_name][bin_id-1],
-                                torch.full(data[target_name].shape, bin_id),
-                                torch.full(data[target_name].shape, 0))
-                            target_c_2 = torch.where(
-                                data[target_name] < g_conf.ACTION_CLASS_RANGE[target_name][bin_id],
-                                torch.full(data[target_name].shape, bin_id),
-                                torch.full(data[target_name].shape, 0))
-                            target_c = (target_c_1 == target_c_2).type(torch.FloatTensor) * bin_id
-                        target_c_f = target_c_f + target_c
-                    targets_vec.append(target_c_f)
-
-            return torch.cat(targets_vec, 1)
-        """
