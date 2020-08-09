@@ -24,14 +24,12 @@ def seed_everything(seed=0):
     os.environ['PYTHONHASHSEED'] = str(seed)
     torch.backends.cudnn.deterministic = True
 
-# The main function maybe we could call it with a default name
+
 def execute(gpu, exp_batch, exp_alias, suppress_output=True, number_of_workers=12):
     """
-        The main training function. This functions loads the latest checkpoint
-        for a given, exp_batch (folder) and exp_alias (experiment configuration).
-        With this checkpoint it starts from the beginning or continue some training.
+        The main encoder training function.
     Args:
-        gpu: The GPU number
+        gpu: The GPU id number
         exp_batch: the folder with the experiments
         exp_alias: the alias, experiment name
         suppress_output: if the output are going to be saved on a file
@@ -50,10 +48,10 @@ def execute(gpu, exp_batch, exp_alias, suppress_output=True, number_of_workers=1
         # Set the process into loading status.
         coil_logger.add_message('Loading', {'GPU': os.environ["CUDA_VISIBLE_DEVICES"]})
 
+        # we set a seed for this exp
         seed_everything(seed=g_conf.MAGICAL_SEED)
 
         # Put the output to a separate file if it is the case
-
         if suppress_output:
             if not os.path.exists('_output_logs'):
                 os.mkdir('_output_logs')
@@ -64,10 +62,6 @@ def execute(gpu, exp_batch, exp_alias, suppress_output=True, number_of_workers=1
                                            exp_alias + '_err_' + g_conf.PROCESS_NAME + '_'
                                            + str(os.getpid()) + ".out"),
                               "a", buffering=1)
-
-        if coil_logger.check_finish('train'):
-            coil_logger.add_message('Finished', {})
-            return
 
         # Preload option
         if g_conf.PRELOAD_MODEL_ALIAS is not None:
@@ -92,7 +86,7 @@ def execute(gpu, exp_batch, exp_alias, suppress_output=True, number_of_workers=1
 
         # Define the dataset. This structure is has the __get_item__ redefined in a way
         # that you can access the positions from the root directory as a in a vector.
-        # full_dataset = os.path.join(os.environ["COIL_DATASET_PATH"], g_conf.TRAIN_DATASET_NAME)
+        # full_dataset = os.path.join(os.environ["SRL_DATASET_PATH"], g_conf.TRAIN_DATASET_NAME)
 
         # By instantiating the augmenter we get a callable that augment images and transform them
         # into tensors.
@@ -102,9 +96,9 @@ def execute(gpu, exp_batch, exp_alias, suppress_output=True, number_of_workers=1
             json_file_name = str(g_conf.EXPERIENCE_FILE[0]).split('/')[-1].split('.')[-2]
         else:
             json_file_name = str(g_conf.EXPERIENCE_FILE[0]).split('/')[-1].split('.')[-2] + '_' + str(g_conf.EXPERIENCE_FILE[1]).split('/')[-1].split('.')[-2]
+
         dataset = CoILDataset(transform=augmenter,
-                              preload_name=g_conf.PROCESS_NAME + '_' + json_file_name + '_' + g_conf.DATA_USED,
-                              clip_big_values=False)
+                              preload_name=g_conf.PROCESS_NAME + '_' + json_file_name + '_' + g_conf.DATA_USED)
 
         print ("Loaded dataset")
 

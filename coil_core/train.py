@@ -18,7 +18,6 @@ import numpy as np
 
 def seed_everything(seed=0):
     random.seed(seed)
-
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     np.random.seed(seed)
