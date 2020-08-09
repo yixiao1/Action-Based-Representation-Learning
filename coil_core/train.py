@@ -57,16 +57,16 @@ def execute(gpu, exp_batch, exp_alias, suppress_output=True, number_of_workers=1
 
         # Put the output to a separate file if it is the case
 
-        #if suppress_output:
-        #    if not os.path.exists('_output_logs'):
-        #        os.mkdir('_output_logs')
-        #    sys.stdout = open(os.path.join('_output_logs', exp_alias + '_' +
-        #                      g_conf.PROCESS_NAME + '_' + str(os.getpid()) + ".out"), "a",
-        #                      buffering=1)
-        #    sys.stderr = open(os.path.join('_output_logs',
-        #                      exp_alias + '_err_'+g_conf.PROCESS_NAME + '_'
-        #                                   + str(os.getpid()) + ".out"),
-        #                      "a", buffering=1)
+        if suppress_output:
+            if not os.path.exists('_output_logs'):
+                os.mkdir('_output_logs')
+            sys.stdout = open(os.path.join('_output_logs', exp_alias + '_' +
+                              g_conf.PROCESS_NAME + '_' + str(os.getpid()) + ".out"), "a",
+                              buffering=1)
+            sys.stderr = open(os.path.join('_output_logs',
+                              exp_alias + '_err_'+g_conf.PROCESS_NAME + '_'
+                                           + str(os.getpid()) + ".out"),
+                              "a", buffering=1)
 
         if coil_logger.check_finish('train'):
             coil_logger.add_message('Finished', {})
@@ -113,8 +113,7 @@ def execute(gpu, exp_batch, exp_alias, suppress_output=True, number_of_workers=1
         else:
             json_file_name = str(g_conf.EXPERIENCE_FILE[0]).split('/')[-1].split('.')[-2] + '_' + str(g_conf.EXPERIENCE_FILE[1]).split('/')[-1].split('.')[-2]
         dataset = CoILDataset(transform=augmenter,
-                              preload_name=g_conf.PROCESS_NAME + '_' + json_file_name + '_' + g_conf.DATA_USED,
-                              clip_big_values=False)
+                              preload_name=g_conf.PROCESS_NAME + '_' + json_file_name + '_' + g_conf.DATA_USED)
 
         #dataset = CoILDataset(transform=augmenter, preload_name=str(g_conf.NUMBER_OF_HOURS)+ 'hours_' + g_conf.TRAIN_DATASET_NAME)
         print ("Loaded Training dataset")
@@ -211,10 +210,8 @@ def execute(gpu, exp_batch, exp_alias, suppress_output=True, number_of_workers=1
                 #TODO: for this two encoder models training, we haven't put speed as input to train yet
 
 
-                if g_conf.ENCODER_MODEL_TYPE in ['ETE_inverse_model',
-                                                 'action_prediction',
-                                                 'stdim', 'forward', 'FIMBC',
-                                                 'ETEDIM', 'one-step-affordances']:
+                if g_conf.ENCODER_MODEL_TYPE in ['action_prediction',
+                                                 'stdim', 'forward','one-step-affordances']:
 
                     e, inter = encoder_model.forward_encoder(inputs_data,
                                            dataset.extract_inputs(data).cuda(),
@@ -224,7 +221,7 @@ def execute(gpu, exp_batch, exp_alias, suppress_output=True, number_of_workers=1
                                                                      data).cuda()))
 
 
-                elif g_conf.ENCODER_MODEL_TYPE in ['ETE', 'ETE_action_prediction', 'ETE_stdim']:
+                elif g_conf.ENCODER_MODEL_TYPE in ['ETE']:
                     e, inter = encoder_model.forward_encoder(inputs_data,
                                                       dataset.extract_inputs(data).cuda(),
                                                       torch.squeeze(

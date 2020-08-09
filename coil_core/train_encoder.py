@@ -123,7 +123,7 @@ def execute(gpu, exp_batch, exp_alias, suppress_output=True, number_of_workers=1
 
         print ("Before the loss")
 
-        if g_conf.ENCODER_MODEL_TYPE in ['ETE', 'ETE_action_prediction']:
+        if g_conf.ENCODER_MODEL_TYPE in ['ETE']:
             criterion = Loss(g_conf.LOSS_FUNCTION)
 
         # Loss time series window
@@ -143,9 +143,7 @@ def execute(gpu, exp_batch, exp_alias, suppress_output=True, number_of_workers=1
               - ETE: input RGB images and speed, compute action loss (steering, throttle, brake)
               - stdim: input two consecutive RGB images, compute the feature loss
               - action_prediction: input two consecutive RGB images, compute action classification loss
-              - forward_infocen: Forward model with action and then perform the infonce.
-              - ETE_action_prediction: input two consecutive RGB images, compute action classification loss + control loss
-              - ETE_stdim: input two consecutive RGB images, compute features loss + control loss
+              - forward: input two consecutive RGB images, compute action loss + feature loss
               
             """
 
@@ -178,8 +176,7 @@ def execute(gpu, exp_batch, exp_alias, suppress_output=True, number_of_workers=1
                 loss.backward()
                 optimizer.step()
 
-            elif g_conf.ENCODER_MODEL_TYPE in ['ETE_inverse_model',
-                                               'forward', 'FIMBC']:
+            elif g_conf.ENCODER_MODEL_TYPE in ['forward']:
                 # We sample another batch to avoid the superposition
 
                 inputs_data = [data['rgb'][0].cuda(), data['rgb'][1].cuda()]
@@ -231,20 +228,6 @@ def execute(gpu, exp_batch, exp_alias, suppress_output=True, number_of_workers=1
                 loss.backward()
                 optimizer.step()
 
-            elif g_conf.ENCODER_MODEL_TYPE in ['forward_infonce',
-                                               'ETEDIM']:
-                inputs_data = [data['rgb'][0].cuda(), data['rgb'][1].cuda()]
-                targets = dataset.extract_targets(data)[0].cuda()
-                loss, loss_other, loss_ete = encoder_model(inputs_data,
-                                           dataset.extract_inputs(data),
-                                           # We also add measurements and commands
-                                           dataset.extract_commands(data), # The continuous one
-                                                           targets
-                                           )
-                loss.backward()
-                optimizer.step()
-
-
             else:
                 raise ValueError("The encoder model type is not know")
 
@@ -276,15 +259,10 @@ def execute(gpu, exp_batch, exp_alias, suppress_output=True, number_of_workers=1
                 #################################################
             """
 
-            if g_conf.ENCODER_MODEL_TYPE in ['stdim', 'action_prediction', 'ETE_inverse_model',
-                                             'ETEDIM', 'forward_infonce', 'forward']:
+            if g_conf.ENCODER_MODEL_TYPE in ['stdim', 'action_prediction', 'forward']:
                 coil_logger.add_scalar('Loss', loss.data, iteration)
                 coil_logger.add_image('f_t', torch.squeeze(data['rgb'][0]), iteration)
                 coil_logger.add_image('f_ti', torch.squeeze(data['rgb'][1]), iteration)
-
-            #elif g_conf.ENCODER_MODEL_TYPE in ['ETE_inverse_model', 'ETEDIM']:
-            #    coil_logger.add_scalar('Loss Other', loss_other.data, iteration)
-            #    coil_logger.add_scalar('Loss ETE', loss_ete.data, iteration)
 
             elif g_conf.ENCODER_MODEL_TYPE in ['one-step-affordances', 'ETE']:
                 coil_logger.add_scalar('Loss', loss.data, iteration)

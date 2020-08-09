@@ -380,9 +380,7 @@ def select_balancing_strategy(dataset, iteration, number_of_workers):
 
     keys = range(0, len(dataset) - g_conf.NUMBER_IMAGES_SEQUENCE)
 
-    if g_conf.ENCODER_MODEL_TYPE in ['ETE_inverse_model', 'ETEDIM', 'forward',
-                                     'action_prediction', 'stdim', 'FIMBC',
-                                     'forward_infonce']:
+    if g_conf.ENCODER_MODEL_TYPE in ['ETE_inverse_model', 'forward', 'action_prediction', 'stdim']:
         if g_conf.DATA_USED == 'all':
             keys = range(0, len(dataset) - max(g_conf.POSITIVE_CONSECUTIVE_THR) * 3)
 
