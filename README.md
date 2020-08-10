@@ -21,7 +21,7 @@ The processes can be defined as four types:
 
 3. Download this repository
 
-    git clone https://github.com/yixiao1/Action-Based_Representation_Learning.git
+        git clone https://github.com/yixiao1/Action-Based_Representation_Learning.git
 
 2. Add packages to your PYTHONPATH:
 
