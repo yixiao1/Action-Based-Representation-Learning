@@ -85,10 +85,10 @@ The processes can be defined as four types:
 
 4. Define a config.json for using a specific model, and put it inside the logs folder of that model: _logs/(exp folder)/(exp exp)
 
-   check on this [config.json]() example
+   check on this [config.json](https://github.com/yixiao1/Action-Based-Representation-Learning/blob/master/_logs/EXP/BC_im_50Hours_seed1_encoder_finetuning_3FC_5Hours_s1_100000/config.json) example
 
 5. To run the benchmark, go under [driving-benchmarks]() folder, and run:
 
         python3 benchmark_runner.py -b NoCrash -a /home/yixiao/Action-Based_Representation_Learning/drive/AffordancesAgent.py -d carlaped -c /home/yixiao/Action-Based_Representation_Learning/_logs/EXP/BC_im_5Hours_seed1_encoder_finetuning_3FC_30mins_s1_100000/config.json --gpu 2
 
-    where `-b` is the benchmark, `-a` is the path to the agent class, `-c` is the [configuration file] () for driving
+    where `-b` is the benchmark, `-a` is the path to the agent class, `-c` is the configuration file for driving
