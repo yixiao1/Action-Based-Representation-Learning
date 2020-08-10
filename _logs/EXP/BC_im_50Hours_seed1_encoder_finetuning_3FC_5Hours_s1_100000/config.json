@@ -1,0 +1,10 @@
+{
+    "agent_name": "EXP_BC_im_50Hours_seed1_encoder_finetuning_3FC_5Hours_s1_100000",
+    "checkpoint": 50000,
+    "encoder_params": {
+        "encoder_checkpoint": 100000,
+        "encoder_exp": "BC_im_50Hours_seed1",
+        "encoder_folder": "ENCODER"
+    },
+    "yaml": "configs/EXP/BC_im_50Hours_seed1_encoder_finetuning_3FC_5Hours_s1.yaml"
+}
