@@ -21,7 +21,7 @@ Basically, the processes can be defined as four steps:
 
 3. Download this repository
 
-     git clone https://github.com/yixiao1/CoRL2020.git
+    git clone https://github.com/yixiao1/CoRL2020.git
 
 2. Add packages to your PYTHONPATH:
 
