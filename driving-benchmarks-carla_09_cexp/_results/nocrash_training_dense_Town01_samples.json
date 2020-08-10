@@ -1,5 +1,0 @@
-step,episodes_completion,result,infractions_score,average_percentage_red_lights
-oneStep_Random_30mins_seed3,25.788885,0.000000,22.500000,0.200000
-BC_im_50Hours_seed1_encoder_finetuning_3FC_30mins_s1,65.844993,0.500000,15.000000,0.250000
-BC_im_5Hours_seed1_encoder_finetuning_3FC_30mins_s1,47.423661,0.250000,5.000000,0.000000
-BC_im_50Hours_seed1_encoder_finetuning_3FC_5Hours_s1,89.376937,0.750000,15.000000,0.217391

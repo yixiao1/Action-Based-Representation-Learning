@@ -126,8 +126,7 @@ def execute(gpu, exp_batch, exp_alias, json_file_path, suppress_output,
         # Definition of the dataset to be used. Preload name is just the validation data name
         dataset = CoILDataset(transform=augmenter,
                               preload_name = g_conf.PROCESS_NAME + '_' + g_conf.DATA_USED,
-                              process_type='validation', vd_json_file_path = json_file_path,
-                              clip_big_values=False)
+                              process_type='validation', vd_json_file_path = json_file_path)
         print ("Loaded Validation dataset")
 
         # Creates the sampler, this part is responsible for managing the keys. It divides
