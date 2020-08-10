@@ -3,10 +3,10 @@
 -------------------------------------------------------------
 This repository is for running the experiments of paper: Action-Based Representation Learning for Autonomous Driving
 
-Basically, the processes can be defined as four steps:
+The processes can be defined as four types:
 
  * Train an encoder model (Behaviour Cloning (BC), Inverse, Forward, ST-DIM)
- * Train a MLP for affordances outputs. The Pre-trained encoder model need to be used.
+ * Train a MLP for affordances outputs. The pre-trained encoder model will be used.
  * Validation on affordances prediction.
  * Actual drive using controller tuned with affordances prediction.
 
@@ -17,7 +17,7 @@ Basically, the processes can be defined as four steps:
 
 2. Define the path of the dataset folder with SRL_DATASET_PATH:
 
-        export SRL_DATASET_PATH=<Path to where your datasets are>
+        export SRL_DATASET_PATH = <Path to where your datasets are>
 
 3. Download this repository
 
