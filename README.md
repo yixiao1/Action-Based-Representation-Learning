@@ -72,7 +72,7 @@ The processes can be defined as four types:
 
 1. The driving results will be saved to your SRL_DATASET_PATH, you could re-define if you want to save to another path
 
-2. You need to build a docker with your carla version
+2. Build a docker with your carla version
 
 3. Set up your CARLA drivng PYTHONPATH:
 
