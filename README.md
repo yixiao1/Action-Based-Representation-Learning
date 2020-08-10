@@ -19,7 +19,7 @@ The processes can be defined as four types:
 
         export SRL_DATASET_PATH = <Path to where your datasets are>
 
-3. Download this repository
+3. Download the repository
 
         git clone https://github.com/yixiao1/Action-Based-Representation-Learning.git
 
