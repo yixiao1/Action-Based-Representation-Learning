@@ -87,7 +87,7 @@ The processes can be defined as four types:
 
    check on this [config.json](https://github.com/yixiao1/Action-Based-Representation-Learning/blob/master/_logs/EXP/BC_im_50Hours_seed1_encoder_finetuning_3FC_5Hours_s1_100000/config.json) example
 
-5. To run the benchmark, go under [driving-benchmarks]() folder, and run:
+5. To run the benchmark, go under [driving-benchmarks](https://github.com/yixiao1/Action-Based-Representation-Learning/tree/master/driving-benchmarks-carla_09_cexp) folder, and run:
 
         python3 benchmark_runner.py -b NoCrash -a /home/yixiao/Action-Based_Representation_Learning/drive/AffordancesAgent.py -d carlaped -c /home/yixiao/Action-Based_Representation_Learning/_logs/EXP/BC_im_5Hours_seed1_encoder_finetuning_3FC_30mins_s1_100000/config.json --gpu 2
 
