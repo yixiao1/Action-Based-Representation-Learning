@@ -67,25 +67,27 @@ Basically, the processes can be defined as four steps:
 -------------------------------------------------------------
 ### Driving on CARLA benchmark
 
-1. The results will be saved to your SRL_DATASET_PATH
+1. The driving results will be saved to your SRL_DATASET_PATH, you could re-define if you want to save to another path
 
-2. Set up your CARLA drivng PYTHONPATH:
+2. You need to build a docker with your carla version
 
-    export PYTHONPATH=<Path to cad>:<Path to carla>::<Path to carla .egg file>:<Path to scenario_runner>
+3. Set up your CARLA drivng PYTHONPATH:
+
+    export PYTHONPATH=<Path to CoRL2020 repository>:<Path to cad>:<Path to carla>::<Path to carla .egg file>:<Path to scenario_runner>
 
     example:
 
-        export PYTHONPATH=/<root dir>/CoRL2020/cad:/<root dir>/CoRL2020/Carla96ped4/PythonAPI/carla:/<root dir>/CoRL2020/PythonAPI/carla:/<root dir>/CoRL2020/scenario_runner
+        export PYTHONPATH=/<root dir>/CoRL2020/:/<root dir>/CoRL2020/cad:/<root dir>/CoRL2020/Carla96ped4/PythonAPI/carla:/<root dir>/CoRL2020/PythonAPI/carla:/<root dir>/CoRL2020/scenario_runner
 
         where `root dir` is the directory you put the downloaded CoRL2020 repository
 
 
-3. Define a config.json for using a specific model, and put it inside the logs folder of that model: _logs/(exp folder)/(exp exp)
+4. Define a config.json for using a specific model, and put it inside the logs folder of that model: _logs/(exp folder)/(exp exp)
 
    check on this [config.json]() example
 
-3. To run the benchmark, go under [driving-benchmarks]() folder, and run:
+5. To run the benchmark, go under [driving-benchmarks]() folder, and run:
 
-   python3 benchmark_runner.py -b NoCrashS -a /datatmp/Experiments/yixiao/Coiltraine-ICML/drive/AffordancesAgent.py  --port 8666 -d carlaped -c /datatmp/Experiments/yixiao/Coiltraine-ICML/_logs/EXP/ETE_20Hours_1_encoder_finetunning_5Hours_1_100000/config.json
+    python3 benchmark_runner.py -b NoCrash -a /home/yixiao/CoRL2020/drive/AffordancesAgent.py -d carlaped -c /home/yixiao/CoRL2020/_logs/EXP/BC_im_5Hours_seed1_encoder_finetuning_3FC_30mins_s1_100000/config.json --gpu 2
 
-   where `-b` is the benchmark, `-a` is the path to the agent class, `-c` is the [configuration file] () for driving
+    where `-b` is the benchmark, `-a` is the path to the agent class, `-c` is the [configuration file] () for driving
