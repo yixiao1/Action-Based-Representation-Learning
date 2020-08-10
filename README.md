@@ -31,7 +31,7 @@ Basically, the processes can be defined as four steps:
 
         export PYTHONPATH=/<root dir>/CoRL2020/Carla96ped4/PythonAPI/carla:/<root dir>/CoRL2020/PythonAPI/carla:/<root dir>/CoRL2020/scenario_runner:/<root dir>/CoRL2020/carl
 
-        where `root dir` is the directory you put the downloaded CoRL2020 repository
+    where `root dir` is the directory you put the downloaded CoRL2020 repository
 
 -------------------------------------------------------------
 ### Train Encoder
@@ -79,7 +79,7 @@ Basically, the processes can be defined as four steps:
 
         export PYTHONPATH=/<root dir>/CoRL2020/:/<root dir>/CoRL2020/cad:/<root dir>/CoRL2020/Carla96ped4/PythonAPI/carla:/<root dir>/CoRL2020/PythonAPI/carla:/<root dir>/CoRL2020/scenario_runner
 
-        where `root dir` is the directory you put the downloaded CoRL2020 repository
+    where `root dir` is the directory you put the downloaded CoRL2020 repository
 
 
 4. Define a config.json for using a specific model, and put it inside the logs folder of that model: _logs/(exp folder)/(exp exp)
