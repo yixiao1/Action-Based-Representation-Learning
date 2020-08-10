@@ -23,7 +23,9 @@ The processes can be defined as four types:
 
         git clone https://github.com/yixiao1/Action-Based-Representation-Learning.git
 
-2. Add packages to your PYTHONPATH:
+4. Download the CARLA version we used with this [link]().
+
+5. Add packages to your PYTHONPATH:
 
     - Path to carla
     - Path to carla .egg fil
