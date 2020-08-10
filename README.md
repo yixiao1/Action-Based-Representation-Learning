@@ -34,29 +34,29 @@ The processes can be defined as four types:
 
         export PYTHONPATH=/<repo dir>/Carla96ped4/PythonAPI/carla:/<repo dir>/Carla96ped4/PythonAPI/carla/dist/carla-0.9.6-py3.5-linux-x86_64.egg:/<repo dir>/scenario_runner:/<repo dir>/carl
 
-    where `repo dir` is the directory of the downloaded `Action-Based_Representation_Learning` repository
+    where `repo dir` is the directory of the downloaded `Action-Based-Representation-Learning` repository
 
 -------------------------------------------------------------
 ### Train Encoder
 
-1. You need to define configuration files for training. Refer to files in [configs folder]()
+1. Define configuration files for training. Refer to files in [configs folder]()
 
 2. Run the main.py file with "train_encoder" process:
 
         python3 main.py --single-process train_encoder --gpus 0 --encoder-folder ENCODER --encoder-exp BC_im_5Hours_seed1
 
-    where `--single-process` defines the process type, `--gpus` defines the gpu to be used, `--encoder-folder` is the folder to save experiments, `--encoder-exp` is the experiment of encoder training
+    where `--single-process` defines the process type, `--gpus` defines the gpu to be used, `--encoder-folder` is the experiment folder of your config file for the encoder, `--encoder-exp` is the experiment name of your config file for the encoder
 
 -------------------------------------------------------------
 ### Train affordances
 
-1. You need to define configuration files for training. Refer to files in [configs folder]()
+1. Define configuration files for training. Refer to files in [configs folder]()
 
 2. Run the main.py file with "train" process:
 
         python3 main.py --single-process train --gpus 0 --encoder-folder ENCODER --encoder-exp BC_im_5Hours_seed1 --encoder-checkpoint 100000 -f EXP -e BC_im_5Hours_seed1_encoder_frozen_1FC_30mins
 
-   where `--single-process` defines the process type, `--gpus` defined the gpu to be used, `--encoder-folder` is the experiment folder of encoder to be used, `--encoder-exp` is the experiment name of encoder to be used, `--encoder-checkpoint` is the specific encoder checkpoint to be used, `-f` is the folder to save experiments of affordances prediction, `-e` is the experiment of affordance training
+   where `--single-process` defines the process type, `--gpus` defined the gpu to be used, `--encoder-folder` is the experiment folder in `_logs` of the encoder to be used, `--encoder-exp` is the experiment of encoder to be used, `--encoder-checkpoint` is the specific encoder checkpoint to be used, `-f` is the folder to save experiments of affordances prediction, `-e` is the experiment of affordance training
 
 -------------------------------------------------------------
 ### Validate on affordances prediction
