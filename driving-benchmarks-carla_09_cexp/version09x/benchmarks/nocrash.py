@@ -28,15 +28,10 @@ def perform(docker, gpu, agent, config, port, agent_name, non_rendering_mode,
         conditions = ['trainingsw', 'newtownsw']
     elif small:
         conditions = ['training', 'newtown']
-        #conditions = ['training']
-        #conditions = ['newtown']
     else:
         conditions = ['training', 'newtown', 'newweathertown', 'newweather']
 
     tasks = ['regular', 'dense', 'empty']
-    #tasks = ['dense']
-    #tasks = ['empty']
-    #tasks = ['regular']
 
     towns = {'training': 'Town01',
              'newweather': 'Town01',
