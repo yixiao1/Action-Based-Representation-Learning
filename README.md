@@ -11,86 +11,81 @@ Basically, the processes can be defined as four steps:
  * Actual drive using controller tuned with affordances prediction.
 
 -------------------------------------------------------------
-### Datasets
+### Setting Environments & Getting Datasets
 
 1. Download the dataset with this [link]().
 
 2. Define the path of the dataset folder with SRL_DATASET_PATH:
 
-    export SRL_DATASET_PATH=<The path to your dataset folder>
+    export SRL_DATASET_PATH=<Path to where your datasets are>
+
+3. Download this repository
+
+     git clone https://github.com/yixiao1/CoRL2020.git
+
+2. Add packages to your PYTHONPATH:
+
+    export PYTHONPATH=<Path to carla>:<Path to carla .egg file>:<Path to scenario_runner>:<Path to cexp>
+
+    example:
+
+        export PYTHONPATH=/<root dir>/CoRL2020/Carla96ped4/PythonAPI/carla:/<root dir>/CoRL2020/PythonAPI/carla:/<root dir>/CoRL2020/scenario_runner:/<root dir>/CoRL2020/carl
+
+        where `root dir` is the directory you put the downloaded CoRL2020 repository
 
 -------------------------------------------------------------
 ### Train Encoder
 
-1. Your need to add some paths to your PYTHONPATH:
+1. You need to define configuration files for training. Refer to files in [configs folder]()
 
-	 export PYTHONPATH=<Path to carla>:<Path to scenario_runner>:<Path to carla .egg file>:<Path to cexp>
+2. Run the main.py file with "train_encoder" process:
 
-2. You need to define configuration files for training. Refer to files in [configs folder]()
+   python3 main.py --single-process train_encoder --gpus 0 --encoder-folder ENCODER --encoder-exp BC_im_5Hours_seed1
 
-3. Run main file
-
-   python3 main.py --single-process train_encoder --gpus <the gpu id to be used> -f <the experiment folder> -e <the experiment name>
+   where `--single-process` defines the process type, `--gpus` defines the gpu to be used, `--encoder-folder` is the folder to save experiments, `--encoder-exp` is the experiment of encoder training
 
 -------------------------------------------------------------
 ### Train affordances
 
-1. You need to define the path to the dataset folder with SRL_DATASET_PATH:
+1. You need to define configuration files for training. Refer to files in [configs folder]()
 
-    export SRL_DATASET_PATH=<The path to your dataset folder>
+2. Run the main.py file with "train" process:
 
-2. Your need to add some paths to your PYTHONPATH:
+   python3 main.py --single-process train --gpus 0 --encoder-folder ENCODER --encoder-exp BC_im_5Hours_seed1 --encoder-checkpoint 100000 -f EXP -e BC_im_5Hours_seed1_encoder_frozen_1FC_30mins
 
-	 export PYTHONPATH=<Path to carla>:<Path to scenario_runner>:<Path to carla .egg file>:<Path to cexp>
-
-3. You need to define configuration files for training. Refer to files in [configs folder]()
-
-3. Run coiltraine.py
-
-   python3 coiltraine.py --single-process train --gpus  <the gpu id to be used> -f <the experiment folder> -e <the experiment name> --encoder-folder <the experiment folder of encoder to be used> --encoder-exp <the experiment name of encoder to be used> --encoder-checkpoint <the checkpoint of encoder to be used>
+   where `--single-process` defines the process type, `--gpus` defined the gpu to be used, `--encoder-folder` is the experiment folder of encoder to be used, `--encoder-exp` is the experiment name of encoder to be used, `--encoder-checkpoint` is the specific encoder checkpoint to be used, `-f` is the folder to save experiments of affordances prediction, `-e` is the experiment of affordance training
 
 -------------------------------------------------------------
 ### Validate on affordances prediction
 
-When you finish affordances training, the validation will be easy to run. You just need to keep the same runing script as before, but simply change the `--single-process train` to `--single-process validation`, and add one more args  `-vj`, which is the path to the validation json file (eg. [this json file](https://github.com/felipecode/cexp/blob/cexp_ICML/database/dataset_ICML_Town01_valid_25mins.json))
+1. Run the main.py file with "validation" process. You will need to define the path to the json file of validation dataset:
 
-   Example:
+    python3 main.py --single-process validation --gpus 0 --encoder-folder ENCODER --encoder-exp BC_im_5Hours_seed1 --encoder-checkpoint 100000 -f EXP -e BC_im_5Hours_seed1_encoder_frozen_1FC_30mins -vj /<root dir>/CoRL2020/carl/database/CoRL2020/dataset_dynamic_Town01_1Hour_valid.json
 
-        python3 coiltraine.py --single-process validation --gpus 0 -f EXP -e ETE_5Hours_1_encoder_finetunning_1Hours_1 --encoder-folder ENCODER --encoder-exp ETE_5Hours_1 --encoder-checkpoint 100000 -vj /datatmp/Experiments/yixiao/carl/database/dataset_ICML_Town01_valid_25mins.json
-
-for one-step-affordances, you don't need to put `--encoder-folder`, `--encoder-exp` and `--encoder-checkpoint`, since we do not train affordances second time
-
-   Example:
-
-        python3 coiltraine.py --single-process validation --gpus 0 -f ENCODER -e one_step_aff_5Hours_1 -vj /datatmp/Experiments/yixiao/carl/database/dataset_ICML_Town01_valid_25mins.json
+    where `-vj` defines the path to your validation json file
 
 -------------------------------------------------------------
 ### Driving on CARLA benchmark
 
-1. The first thing you need to do is to define the sensor_saved path and add some path to PYTHONPATH:
+1. The results will be saved to your SRL_DATASET_PATH
 
-   Examples:
+2. Set up your CARLA drivng PYTHONPATH:
 
-        export SRL_DATASET_PATH = /home/yixiao/Datasets/ICML
+    export PYTHONPATH=<Path to cad>:<Path to carla>::<Path to carla .egg file>:<Path to scenario_runner>
 
-        export PYTHONPATH=/home/yixiao/Coiltraine-ICML/:/home/yixiao/Carla96ped4/PythonAPI/carla/dist/carla-0.9.6-py3.5-linux-x86_64.egg:/home/yixiao/Carla96ped4/PythonAPI/carla/:/home/yixiao/cad/:/home/yixiao/scenario_runner
+    example:
 
-   (Note that: I modified a bit the code in my CAD folder to debug relative angle error and save affordances results in measurement files, so please set the path to `/home/yixiao/cad/` but not your CAD path.)
+        export PYTHONPATH=/<root dir>/CoRL2020/cad:/<root dir>/CoRL2020/Carla96ped4/PythonAPI/carla:/<root dir>/CoRL2020/PythonAPI/carla:/<root dir>/CoRL2020/scenario_runner
+
+        where `root dir` is the directory you put the downloaded CoRL2020 repository
 
 
-2. You need to define a config.json for a specific model, and put it inside the logs folder of that model: _logs/(exp folder)/(exp exp)
+3. Define a config.json for using a specific model, and put it inside the logs folder of that model: _logs/(exp folder)/(exp exp)
 
-   check on this [config.json](https://github.com/yixiao1/Coiltraine-ICML/blob/master/_logs/EXP/ETE_20Hours_1_encoder_finetunning_5Hours_1_100000/config.json) example
+   check on this [config.json]() example
 
-3. To run the benchmark, go to /home/yixiao/driving-benchmarks-carla_09_cexp
+3. To run the benchmark, go under [driving-benchmarks]() folder, and run:
 
-    (Note: the original code was downloaded from this [branch](https://github.com/carla-simulator/driving-benchmarks/tree/carla_09_cexp), but I modified a bit the code to debug relative angle error and save affordances results in measurement files,
-    so please use this folder (but not the online one) to run, then you could get the affordances results in measurement files and also the trajectory of relative angle error.)
+   python3 benchmark_runner.py -b NoCrashS -a /datatmp/Experiments/yixiao/Coiltraine-ICML/drive/AffordancesAgent.py  --port 8666 -d carlaped -c /datatmp/Experiments/yixiao/Coiltraine-ICML/_logs/EXP/ETE_20Hours_1_encoder_finetunning_5Hours_1_100000/config.json
 
-   and run:
-
-        python3 benchmark_runner.py -b NoCrashS -a /datatmp/Experiments/yixiao/Coiltraine-ICML/drive/AffordancesAgent.py  --port 8666 -d carlaped -c /datatmp/Experiments/yixiao/Coiltraine-ICML/_logs/EXP/ETE_20Hours_1_encoder_finetunning_5Hours_1_100000/config.json
-
-   where `-b` is the benchmark, `-a` is the path to the agent class, `-c` is the configuration file for driving (like the [config.json](https://github.com/yixiao1/Coiltraine-ICML/blob/master/_logs/EXP/ETE_20Hours_1_encoder_finetunning_5Hours_1_100000/config.json) in step 2))
-
-   Note that you need to define `-c`, otherwise the agent can not access the information for loading driving models
+   where `-b` is the benchmark, `-a` is the path to the agent class, `-c` is the [configuration file] () for driving
