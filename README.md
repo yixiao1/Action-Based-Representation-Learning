@@ -37,7 +37,7 @@ The processes can be defined as four types:
     where `repo dir` is the directory of the downloaded `Action-Based-Representation-Learning` repository
 
 -------------------------------------------------------------
-### Train Encoder
+### Training Encoder
 
 1. Define configuration files for training. Refer to files in [configs folder]()
 
@@ -48,7 +48,7 @@ The processes can be defined as four types:
     where `--single-process` defines the process type, `--gpus` defines the gpu to be used, `--encoder-folder` is the experiment folder of your config file for the encoder, `--encoder-exp` is the experiment name of your config file for the encoder
 
 -------------------------------------------------------------
-### Train affordances
+### Training MLP for affordances
 
 1. Define configuration files for training. Refer to files in [configs folder]()
 
