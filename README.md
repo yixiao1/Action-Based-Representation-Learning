@@ -17,7 +17,7 @@ Basically, the processes can be defined as four steps:
 
 2. Define the path of the dataset folder with SRL_DATASET_PATH:
 
-    export SRL_DATASET_PATH=<Path to where your datasets are>
+        export SRL_DATASET_PATH=<Path to where your datasets are>
 
 3. Download this repository
 
