@@ -41,7 +41,7 @@ The processes can be defined as four types:
 -------------------------------------------------------------
 ### Training Encoder
 
-1. Define configuration files for training. Refer to files in [configs folder]()
+1. Define configuration files for training. Refer to files in [configs folder](https://github.com/yixiao1/Action-Based-Representation-Learning/tree/master/configs/ENCODER)
 
 2. Run the main.py file with "train_encoder" process:
 
@@ -52,7 +52,7 @@ The processes can be defined as four types:
 -------------------------------------------------------------
 ### Training MLP for affordances
 
-1. Define configuration files for training. Refer to files in [configs folder]()
+1. Define configuration files for training. Refer to files in [configs folder](https://github.com/yixiao1/Action-Based-Representation-Learning/tree/master/configs/EXP)
 
 2. Run the main.py file with "train" process:
 
