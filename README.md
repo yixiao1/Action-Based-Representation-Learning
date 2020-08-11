@@ -1,13 +1,16 @@
 # Action-Based Representation Learning for Autonomous Driving
 
 -------------------------------------------------------------
-This repository is for running the experiments of paper: [Action-Based Representation Learning for Autonomous Driving]()
+This repository is for running the experiments of paper: Action-Based Representation Learning for Autonomous Driving
 
  <img src="driving_clip.gif" height="350">
 
 You could check on our:
   - [Paper]()
   - [Video]()
+
+-------------------------------------------------------------
+### Experiments Summary
 
 The processes can be defined as four types:
 
