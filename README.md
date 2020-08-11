@@ -10,7 +10,7 @@ The processes can be defined as four types:
  * Validation on affordances prediction.
  * Actual drive using controller tuned with affordances prediction.
 
- <img src="overview.png" height="250">
+ <img src="driving_clip.gif" height="200">
 
 -------------------------------------------------------------
 ### Setting Environments & Getting Datasets
