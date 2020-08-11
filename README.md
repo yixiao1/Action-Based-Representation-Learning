@@ -3,14 +3,14 @@
 -------------------------------------------------------------
 This repository is for running the experiments of paper: [Action-Based Representation Learning for Autonomous Driving]()
 
+ <img src="driving_clip.gif" height="350">
+
 The processes can be defined as four types:
 
  * Train an encoder model (Behaviour Cloning (BC), Inverse, Forward, ST-DIM)
  * Train a MLP for affordances outputs. The pre-trained encoder model will be used.
  * Validation on affordances prediction.
  * Actual drive using controller tuned with affordances prediction.
-
- <img src="driving_clip.gif" height="350">
 
 -------------------------------------------------------------
 ### Setting Environments & Getting Datasets
