@@ -78,7 +78,7 @@ The processes can be defined as four types:
 
         docker image build -f /.../carla/Util/Docker/Release.Dockerfile -t carlaped /home/yixiao/Carla96ped4/
 
-    where `-f` is the path to the Realease.Dockerfile (download from [carla github] (https://github.com/carla-simulator/carla/blob/master/Util/Docker/Release.Dockerfile)), `-t` defines the name of the docker you want to created, and /home/yixiao/Carla96ped4/ is the path of Carla package
+    where `-f` is the path to the Realease.Dockerfile (you could download from [carla github](https://github.com/carla-simulator/carla/blob/master/Util/Docker/Release.Dockerfile)), `-t` defines the name of the docker you want to created, and /home/yixiao/Carla96ped4/ is the path of Carla package
 
 3. Set up your CARLA drivng PYTHONPATH:
 
