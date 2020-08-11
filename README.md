@@ -1,7 +1,7 @@
 # Action-Based Representation Learning for Autonomous Driving
 
 -------------------------------------------------------------
-This repository is for running the experiments of paper: Action-Based Representation Learning for Autonomous Driving
+This repository is for running the experiments of paper: [Action-Based Representation Learning for Autonomous Driving]()
 
 The processes can be defined as four types:
 
@@ -10,7 +10,7 @@ The processes can be defined as four types:
  * Validation on affordances prediction.
  * Actual drive using controller tuned with affordances prediction.
 
- <img src="overview.png" height="200">
+ <img src="overview.png" height="300">
 
 -------------------------------------------------------------
 ### Setting Environments & Getting Datasets
