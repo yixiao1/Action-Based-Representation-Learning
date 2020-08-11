@@ -5,6 +5,10 @@ This repository is for running the experiments of paper: [Action-Based Represent
 
  <img src="driving_clip.gif" height="350">
 
+You could check on our:
+  - [Paper]()
+  - [Video](https://drive.google.com/file/d/1L8b8gMdb6qMi48g6sEpkUmYiyF4DyHgj/view?usp=sharing)
+
 The processes can be defined as four types:
 
  * Train an encoder model (Behaviour Cloning (BC), Inverse, Forward, ST-DIM)
