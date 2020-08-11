@@ -7,7 +7,7 @@ This repository is for running the experiments of paper: [Action-Based Represent
 
 You could check on our:
   - [Paper]()
-  - [Video](https://drive.google.com/file/d/1L8b8gMdb6qMi48g6sEpkUmYiyF4DyHgj/view?usp=sharing)
+  - [Video]()
 
 The processes can be defined as four types:
 
