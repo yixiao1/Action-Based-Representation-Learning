@@ -23,7 +23,7 @@ The processes can be defined as four types:
 
         git clone https://github.com/yixiao1/Action-Based-Representation-Learning.git
 
-4. Download the CARLA version we used with this [link]().
+4. Download the CARLA version we used with this [link](https://drive.google.com/file/d/1m4J2yJqL7QcCfaxvMh8erLzdGEyFC5mg/view?usp=sharing).
 
 5. Add packages to your PYTHONPATH:
 
@@ -84,7 +84,7 @@ The processes can be defined as four types:
 
         export PYTHONPATH=/<repo dir>:/<repo dir>/cad:/<repo dir>/Carla96ped4/PythonAPI/carla:/<repo dir>/PythonAPI/carla:/<repo dir>/scenario_runner
 
-    where `repo dir` is the directory of the downloaded `Action-Based_Representation_Learning` repository
+    where `repo dir` is the directory of the downloaded `Action-Based-Representation-Learning` repository
 
 
 4. Define a config.json for using a specific model, and put it inside the logs folder of that model: _logs/(exp folder)/(exp exp)
@@ -93,6 +93,8 @@ The processes can be defined as four types:
 
 5. To run the benchmark, go under [driving-benchmarks](https://github.com/yixiao1/Action-Based-Representation-Learning/tree/master/driving-benchmarks-carla_09_cexp) folder, and run:
 
-        python3 benchmark_runner.py -b NoCrash -a /home/yixiao/Action-Based_Representation_Learning/drive/AffordancesAgent.py -d carlaped -c /home/yixiao/Action-Based_Representation_Learning/_logs/EXP/BC_im_5Hours_seed1_encoder_finetuning_3FC_30mins_s1_100000/config.json --gpu 2
+        python3 benchmark_runner.py -b NoCrash -a /home/yixiao/Action-Based-Representation-Learning/drive/AffordancesAgent.py -d carlaped -c /home/yixiao/Action-Based-Representation-Learning/_logs/EXP/BC_im_5Hours_seed1_encoder_finetuning_3FC_30mins_s1_100000/config.json --gpu 2
 
     where `-b` is the benchmark, `-a` is the path to the agent class, `-c` is the configuration file for driving
+
+6. To drive our affordance-based model with 50 hours Behaviour Cloning (BC) pre-training, you need to download this [_logs](https://drive.google.com/file/d/14N6B6Q_zhCnXZy1sne-HFjaktjNjjTjF/view?usp=sharing) folder to the same directory of this repository), and run step 5
