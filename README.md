@@ -31,7 +31,7 @@ The processes can be defined as four types:
 -------------------------------------------------------------
 ### Setting Environments & Getting Datasets
 
-1. Download the dataset. The full dataset is not yet ready for publishing, here we provide a [small dataset](https://drive.google.com/file/d/1nGHApXVF8oGRLH9sZ_C1gdqcGkhTvEnb/view?usp=sharing) for simple training test.
+1. Download the dataset. The full dataset is not yet ready for publishing, here we provide a [small dataset](https://drive.google.com/file/d/1nGHApXVF8oGRLH9sZ_C1gdqcGkhTvEnb/view?usp=sharing) for simple test. Note that in the following steps, we will use this small dataset for both training and validation, just to illustrate how to run our framework. Once the full dataset is ready, we will provide different datasets for training and validation.
 
 2. Define the path to your dataset folder with SRL_DATASET_PATH:
 
