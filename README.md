@@ -32,7 +32,7 @@ The processes can be defined as four types:
 
 1. Download the dataset with this [link]().
 
-2. Define the path of your dataset folder with SRL_DATASET_PATH:
+2. Define the path to your dataset folder with SRL_DATASET_PATH:
 
         export SRL_DATASET_PATH = <Path to where your datasets are>
 
