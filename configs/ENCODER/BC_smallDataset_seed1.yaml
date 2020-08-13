@@ -1,5 +1,5 @@
 ####General Configuration Parameters####
-SAVE_SCHEDULE: range(0, 1001, 100000) # The iterations where training checkpoints are going to be saved
+SAVE_SCHEDULE: range(0, 1001, 1000) # The iterations where training checkpoints are going to be saved
 NUMBER_OF_LOADING_WORKERS: 12   # Number of threads used in the data loader
 MAGICAL_SEED: 111
 
@@ -28,7 +28,7 @@ USE_NOISE_DATA: True  # If we use the noise data.
 EXPERIENCE_FILE: '/home/yixiao/Action-Based-Representation-Learning/carl/database/CoRL2020/small_dataset.json'
 
 #### Testing Related Parameters ####
-TEST_SCHEDULE: range(1000, 2001, 1000)  # The frequency the model is actually tested.
+TEST_SCHEDULE: range(0, 1001, 1000)  # The frequency the model is actually tested.
 
 #### Model Related Parameters ####
 # Network Parameters #
