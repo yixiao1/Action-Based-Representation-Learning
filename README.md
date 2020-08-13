@@ -66,7 +66,7 @@ The processes can be defined as four types:
 
 2. Run the main.py file with "train_encoder" process:
 
-        python3 main.py --single-process train_encoder --gpus 0 --encoder-folder ENCODER --encoder-exp BC_im_5Hours_seed1
+        python3 main.py --single-process train_encoder --gpus 0 --encoder-folder ENCODER --encoder-exp BC_im_50Hours_seed1
 
     where `--single-process` defines the process type, `--gpus` defines the gpu to be used, `--encoder-folder` is the experiment folder of your config file for the encoder, `--encoder-exp` is the experiment name of your config file for the encoder
 
@@ -77,7 +77,7 @@ The processes can be defined as four types:
 
 2. Run the main.py file with "train" process:
 
-        python3 main.py --single-process train --gpus 0 --encoder-folder ENCODER --encoder-exp BC_im_5Hours_seed1 --encoder-checkpoint 100000 -f EXP -e BC_im_5Hours_seed1_encoder_frozen_1FC_30mins
+        python3 main.py --single-process train --gpus 0 --encoder-folder ENCODER --encoder-exp BC_im_50Hours_seed1 --encoder-checkpoint 100000 -f EXP -e BC_im_50Hours_seed1_encoder_frozen_1FC_30mins
 
    where `--single-process` defines the process type, `--gpus` defined the gpu to be used, `--encoder-folder` is the experiment folder in `_logs` of the encoder to be used, `--encoder-exp` is the experiment of encoder to be used, `--encoder-checkpoint` is the specific encoder checkpoint to be used, `-f` is the folder to save experiments of affordances prediction, `-e` is the experiment of affordance training
 
@@ -86,7 +86,7 @@ The processes can be defined as four types:
 
 1. Run the main.py file with "validation" process. You will need to define the path to the json file of validation dataset:
 
-        python3 main.py --single-process validation --gpus 0 --encoder-folder ENCODER --encoder-exp BC_im_5Hours_seed1 --encoder-checkpoint 100000 -f EXP -e BC_im_5Hours_seed1_encoder_frozen_1FC_30mins -vj /<repo dir>/carl/database/CoRL2020/dataset_dynamic_Town01_1Hour_valid.json
+        python3 main.py --single-process validation --gpus 0 --encoder-folder ENCODER --encoder-exp BC_im_50Hours_seed1 --encoder-checkpoint 100000 -f EXP -e BC_im_50Hours_seed1_encoder_frozen_1FC_30mins -vj $ACTIONDIR/carl/database/CoRL2020/dataset_dynamic_Town01_1Hour_valid.json
 
     where `-vj` defines the path to your validation json file
 
@@ -97,15 +97,15 @@ The processes can be defined as four types:
 
 2. Build a docker with your carla version:
 
-        docker image build -f /.../carla/Util/Docker/Release.Dockerfile -t carlaped /home/yixiao/Carla96ped4/
+        docker image build -f /.../carla/Util/Docker/Release.Dockerfile -t carlaped $ACTIONDIR/Carla96ped4/
 
-    where `-f` is the path to the [Realease.Dockerfile](https://github.com/carla-simulator/carla/blob/master/Util/Docker/Release.Dockerfile), `-t` defines the name of the docker you want to created, and /home/yixiao/Carla96ped4/ is the path of Carla package
+    where `-f` is the path to the [Realease.Dockerfile](https://github.com/carla-simulator/carla/blob/master/Util/Docker/Release.Dockerfile), `-t` defines the name of the docker you want to created, and $ACTIONDIR/Carla96ped4/ is the path to your Carla package
 
-3. Set up your CARLA drivng PYTHONPATH:
+3. Set up PYTHONPATH for CARLA driving:
 
         export PYTHONPATH=$ACTIONDIR:$ACTIONDIR/cad:$ACTIONDIR/Carla96ped4/PythonAPI/carla:$ACTIONDIR/PythonAPI/carla:$ACTIONDIR/scenario_runner
 
-4. Define a config.json for using a specific model, and put it inside the logs folder of that model: _logs/(exp folder)/(exp exp)
+4. Define a config.json for using a specific model, and put it into the directory of your model in _logs folder: _logs/(experiment folder)/(experiment name)
 
    check on this [config.json](https://github.com/yixiao1/Action-Based-Representation-Learning/blob/master/_logs/EXP/BC_im_50Hours_seed1_encoder_finetuning_3FC_5Hours_s1_100000/config.json) example
 
@@ -115,8 +115,8 @@ The processes can be defined as four types:
 
 and run:
 
-        python3 benchmark_runner.py -b NoCrash -a /home/yixiao/Action-Based-Representation-Learning/drive/AffordancesAgent.py -d carlaped -c /home/yixiao/Action-Based-Representation-Learning/_logs/EXP/BC_im_5Hours_seed1_encoder_finetuning_3FC_30mins_s1_100000/config.json --gpu 2
+        python3 benchmark_runner.py -b NoCrash -a $ACTIONDIR/drive/AffordancesAgent.py -d carlaped -c $ACTIONDIR/_logs/EXP/BC_im_50Hours_seed1_encoder_finetuning_3FC_5Hours_s1_100000/config.json --gpu 2
 
     where `-b` is the benchmark, `-a` is the path to the agent class, `-c` is the configuration file for driving
 
-6. To drive our affordance-based model with 50 hours Behaviour Cloning (BC) pre-training, you need to download this [_logs](https://drive.google.com/file/d/14N6B6Q_zhCnXZy1sne-HFjaktjNjjTjF/view?usp=sharing) folder to the same directory of this repository), and run step 5
+6. To drive our affordance-based model with 50 hours Behaviour Cloning (BC) pre-training, you need to download this [_logs](https://drive.google.com/file/d/14N6B6Q_zhCnXZy1sne-HFjaktjNjjTjF/view?usp=sharing) to the same directory of this repository), and run step 5
