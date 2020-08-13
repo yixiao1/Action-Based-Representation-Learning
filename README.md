@@ -30,7 +30,7 @@ The processes can be defined as four types:
 -------------------------------------------------------------
 ### Setting Environments & Getting Datasets
 
-1. Download the dataset with this [link]().
+1. Download the dataset. The full dataset is not yet ready for publishing, here we provide a [small dataset]() for simple test.
 
 2. Define the path to your dataset folder with SRL_DATASET_PATH:
 
