@@ -68,7 +68,7 @@ The processes can be defined as four types:
 
         python3 main.py --single-process train_encoder --gpus 0 --encoder-folder ENCODER --encoder-exp BC_im_50Hours_seed1
 
-    where `--single-process` defines the process type, `--gpus` defines the gpu to be used, `--encoder-folder` is the experiment folder of your config file for the encoder, `--encoder-exp` is the experiment name of your config file for the encoder
+    where `--single-process` defines the process type, `--gpus` defines the gpu to be used, `--encoder-folder` is the experiment folder name you defined in `config` folder, `--encoder-exp` is the experiment name you defined in `config` folder
 
 -------------------------------------------------------------
 ### Training MLP for affordances
@@ -79,7 +79,7 @@ The processes can be defined as four types:
 
         python3 main.py --single-process train --gpus 0 --encoder-folder ENCODER --encoder-exp BC_im_50Hours_seed1 --encoder-checkpoint 100000 -f EXP -e BC_im_50Hours_seed1_encoder_frozen_1FC_30mins
 
-   where `--single-process` defines the process type, `--gpus` defined the gpu to be used, `--encoder-folder` is the experiment folder in `_logs` of the encoder to be used, `--encoder-exp` is the experiment of encoder to be used, `--encoder-checkpoint` is the specific encoder checkpoint to be used, `-f` is the folder to save experiments of affordances prediction, `-e` is the experiment of affordance training
+   where `--single-process` defines the process type, `--gpus` defined the gpu to be used, `--encoder-folder` is the experiment folder name of the encoder to be used, `--encoder-exp` is the experiment name of encoder to be used, `--encoder-checkpoint` is the specific encoder checkpoint to be used, `-f` is is the experiment folder name you defined in `config` folder for affordances prediction, `-e` is the experiment name you defined in `config` folder for affordances prediction
 
 -------------------------------------------------------------
 ### Validate on affordances prediction
