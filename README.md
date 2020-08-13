@@ -31,7 +31,7 @@ The processes can be defined as four types:
 -------------------------------------------------------------
 ### Setting Environments & Getting Datasets
 
-1. Download the dataset. The full dataset is not yet ready for publishing, here we provide a [small dataset](https://drive.google.com/file/d/1nGHApXVF8oGRLH9sZ_C1gdqcGkhTvEnb/view?usp=sharing) for simple test.
+1. Download the dataset. The full dataset is not yet ready for publishing, here we provide a [small dataset](https://drive.google.com/file/d/1nGHApXVF8oGRLH9sZ_C1gdqcGkhTvEnb/view?usp=sharing) for simple training test.
 
 2. Define the path to your dataset folder with SRL_DATASET_PATH:
 
@@ -67,7 +67,7 @@ The processes can be defined as four types:
 
 2. Run the main.py file with "train_encoder" process:
 
-        python3 main.py --single-process train_encoder --gpus 0 --encoder-folder ENCODER --encoder-exp BC_im_50Hours_seed1
+        python3 main.py --single-process train_encoder --gpus 0 --encoder-folder ENCODER --encoder-exp BC_smallDataset_seed1
 
     where `--single-process` defines the process type, `--gpus` defines the gpu to be used, `--encoder-folder` is the experiment folder name you defined in `config` folder, `--encoder-exp` is the experiment name you defined in `config` folder
 
@@ -78,7 +78,7 @@ The processes can be defined as four types:
 
 2. Run the main.py file with "train" process:
 
-        python3 main.py --single-process train --gpus 0 --encoder-folder ENCODER --encoder-exp BC_im_50Hours_seed1 --encoder-checkpoint 100000 -f EXP -e BC_im_50Hours_seed1_encoder_frozen_1FC_30mins
+        python3 main.py --single-process train --gpus 0 --encoder-folder ENCODER --encoder-exp BC_smallDataset_seed1 --encoder-checkpoint 1000 -f EXP -e BC_smallDataset_seed1_encoder_frozen_1FC_smallDataset_s1
 
    where `--single-process` defines the process type, `--gpus` defined the gpu to be used, `--encoder-folder` is the experiment folder name of the encoder to be used, `--encoder-exp` is the experiment name of encoder to be used, `--encoder-checkpoint` is the specific encoder checkpoint to be used, `-f` is is the experiment folder name you defined in `config` folder for affordances prediction, `-e` is the experiment name you defined in `config` folder for affordances prediction
 
@@ -87,7 +87,7 @@ The processes can be defined as four types:
 
 1. Run the main.py file with "validation" process. You will need to define the path to the json file of validation dataset:
 
-        python3 main.py --single-process validation --gpus 0 --encoder-folder ENCODER --encoder-exp BC_im_50Hours_seed1 --encoder-checkpoint 100000 -f EXP -e BC_im_50Hours_seed1_encoder_frozen_1FC_30mins -vj $ACTIONDIR/carl/database/CoRL2020/dataset_dynamic_Town01_1Hour_valid.json
+        python3 main.py --single-process validation --gpus 0 --encoder-folder ENCODER --encoder-exp BC_smallDataset_seed1 --encoder-checkpoint 1000 -f EXP -e BC_smallDataset_seed1_encoder_frozen_1FC_smallDataset_s1 -vj $ACTIONDIR/carl/database/CoRL2020/small_dataset.json
 
     where `-vj` defines the path to your validation json file
 
