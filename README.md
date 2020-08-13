@@ -15,7 +15,7 @@ Please check our [video](https://drive.google.com/file/d/1kbXF3UtQk70ncDmsI5YQ73
 ### Related Publications:
 Our work is built using the following frameworks:
  * [Coiltraine](https://github.com/felipecode/coiltraine), which can be used to easily train and manage the trainings of imitation learning networks jointly with evaluations on the CARLA simulator. 
- * [Cexp](https://github.com/felipecode/cexp), which is a interface to the CARLA simulator and the scenario runner to produce fully usable environments. These environments are driving routes/situations where you can train or benchmark your agent.
+ * [Cexp](https://github.com/felipecode/cexp), which is a interface to the CARLA simulator and the scenario runner to produce fully usable environments.
 
 -------------------------------------------------------------
 ### Experiments Summary
