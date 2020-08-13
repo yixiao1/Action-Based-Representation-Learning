@@ -18,6 +18,16 @@ The processes can be defined as four types:
  * Train a MLP for affordances outputs. The pre-trained encoder model will be used.
  * Validation on affordances prediction.
  * Actual drive using controller tuned with affordances prediction.
+ 
+ -------------------------------------------------------------
+### Publications
+We kindly ask to cite our paper if you find this work useful:
+ * Yi Xiao, Felipe Codevilla, Christopher Pal, Antonio M. Lopez, Action-Based Representation Learning for Autonomous Driving. ArXiv:
+ 
+### Related Publications:
+Our work is built using the following frameworks:
+ * [Coiltraine](https://github.com/felipecode/coiltraine), which can be used to easily train and manage the trainings of imitation learning networks jointly with evaluations on the CARLA simulator. 
+ * [Cexp](https://github.com/felipecode/cexp), which is a interface to the CARLA simulator and the scenario runner to produce fully usable environments. These environments are driving routes/situations where you can train or benchmark your agent.
 
 -------------------------------------------------------------
 ### Setting Environments & Getting Datasets
