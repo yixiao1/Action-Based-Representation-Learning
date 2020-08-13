@@ -32,17 +32,23 @@ The processes can be defined as four types:
 
 1. Download the dataset with this [link]().
 
-2. Define the path of the dataset folder with SRL_DATASET_PATH:
+2. Define the path of your dataset folder with SRL_DATASET_PATH:
 
         export SRL_DATASET_PATH = <Path to where your datasets are>
 
 3. Download the repository
 
         git clone https://github.com/yixiao1/Action-Based-Representation-Learning.git
+        
+4. Go to your downloaded repository, and define ACTIONDIR with this directory
+        
+        cd ~/Action-Based-Representation-Learning
 
-4. Download the CARLA version we used with this [link](https://drive.google.com/file/d/1m4J2yJqL7QcCfaxvMh8erLzdGEyFC5mg/view?usp=sharing).
+        export ACTIONDIR=$(pwd)
 
-5. Add packages to your PYTHONPATH:
+5. Download the CARLA version we used with this [link](https://drive.google.com/file/d/1m4J2yJqL7QcCfaxvMh8erLzdGEyFC5mg/view?usp=sharing), and put it inside your downloaded repository 
+
+6. Add packages to your PYTHONPATH:
 
     - Path to carla
     - Path to carla .egg fil
@@ -51,9 +57,7 @@ The processes can be defined as four types:
 
     example:
 
-        export PYTHONPATH=/<repo dir>/Carla96ped4/PythonAPI/carla:/<repo dir>/Carla96ped4/PythonAPI/carla/dist/carla-0.9.6-py3.5-linux-x86_64.egg:/<repo dir>/scenario_runner:/<repo dir>/carl
-
-    where `repo dir` is the directory of the downloaded `Action-Based-Representation-Learning` repository
+        export PYTHONPATH=$ACTIONDIR/Carla96ped4/PythonAPI/carla:$ACTIONDIR/Carla96ped4/PythonAPI/carla/dist/carla-0.9.6-py3.5-linux-x86_64.egg:$ACTIONDIR/scenario_runner:$ACTIONDIR/carl
 
 -------------------------------------------------------------
 ### Training Encoder
@@ -89,7 +93,7 @@ The processes can be defined as four types:
 -------------------------------------------------------------
 ### Driving on CARLA benchmark
 
-1. The driving results will be saved to your SRL_DATASET_PATH, you could re-define if you want to save to another path
+1. The driving results will be saved to your SRL_DATASET_PATH, you could re-define it if you want to save to another path
 
 2. Build a docker with your carla version:
 
@@ -99,16 +103,17 @@ The processes can be defined as four types:
 
 3. Set up your CARLA drivng PYTHONPATH:
 
-        export PYTHONPATH=/<repo dir>:/<repo dir>/cad:/<repo dir>/Carla96ped4/PythonAPI/carla:/<repo dir>/PythonAPI/carla:/<repo dir>/scenario_runner
-
-    where `repo dir` is the directory of the downloaded `Action-Based-Representation-Learning` repository
-
+        export PYTHONPATH=$ACTIONDIR:$ACTIONDIR/cad:$ACTIONDIR/Carla96ped4/PythonAPI/carla:$ACTIONDIR/PythonAPI/carla:$ACTIONDIR/scenario_runner
 
 4. Define a config.json for using a specific model, and put it inside the logs folder of that model: _logs/(exp folder)/(exp exp)
 
    check on this [config.json](https://github.com/yixiao1/Action-Based-Representation-Learning/blob/master/_logs/EXP/BC_im_50Hours_seed1_encoder_finetuning_3FC_5Hours_s1_100000/config.json) example
 
-5. To run the benchmark, go under [driving-benchmarks](https://github.com/yixiao1/Action-Based-Representation-Learning/tree/master/driving-benchmarks-carla_09_cexp) folder, and run:
+5. To run the benchmark, go to [driving-benchmarks](https://github.com/yixiao1/Action-Based-Representation-Learning/tree/master/driving-benchmarks-carla_09_cexp) folder:
+
+        cd driving-benchmarks-carla_09_cexp/
+
+and run:
 
         python3 benchmark_runner.py -b NoCrash -a /home/yixiao/Action-Based-Representation-Learning/drive/AffordancesAgent.py -d carlaped -c /home/yixiao/Action-Based-Representation-Learning/_logs/EXP/BC_im_5Hours_seed1_encoder_finetuning_3FC_30mins_s1_100000/config.json --gpu 2
 
