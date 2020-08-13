@@ -28,7 +28,6 @@ The processes can be defined as four types:
  * Actual drive using controller tuned with affordances prediction.
 
 
-
 -------------------------------------------------------------
 ### Setting Environments & Getting Datasets
 
@@ -53,7 +52,7 @@ The processes can be defined as four types:
 6. Add the following packages to your PYTHONPATH:
 
     - Path to carla
-    - Path to carla .egg fil
+    - Path to carla .egg file
     - Path to scenario_runner
     - Path to carl
 
