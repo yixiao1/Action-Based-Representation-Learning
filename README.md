@@ -80,7 +80,7 @@ The processes can be defined as four types:
 
         python3 main.py --single-process train --gpus 0 --encoder-folder ENCODER --encoder-exp BC_smallDataset_seed1 --encoder-checkpoint 1000 -f EXP -e BC_smallDataset_seed1_encoder_frozen_1FC_smallDataset_s1
 
-   where `--single-process` defines the process type, `--gpus` defined the gpu to be used, `--encoder-folder` is the experiment folder name of the encoder to be used, `--encoder-exp` is the experiment name of encoder to be used, `--encoder-checkpoint` is the specific encoder checkpoint to be used, `-f` is the experiment folder you defined in [config folder](https://github.com/yixiao1/Action-Based-Representation-Learning/tree/master/configs) for affordances prediction, `-e` is the experiment name you defined the experiment folder for affordances prediction.
+   where `--single-process` defines the process type, `--gpus` defined the gpu to be used, `--encoder-folder` is the experiment folder name of the encoder to be used, `--encoder-exp` is the experiment name of encoder to be used, `--encoder-checkpoint` is the specific encoder checkpoint to be used, `-f` is the experiment folder you defined in [config folder](https://github.com/yixiao1/Action-Based-Representation-Learning/tree/master/configs) for affordances prediction, `-e` is the experiment name you defined in the experiment folder for affordances prediction.
 
 -------------------------------------------------------------
 ### Validate on affordances prediction
@@ -108,7 +108,7 @@ The processes can be defined as four types:
 
 4. Define a config.json for using a specific model, and put it into the directory of your model in _logs folder: _logs/(experiment folder)/(experiment name)
 
-   check on this [config.json](https://github.com/yixiao1/Action-Based-Representation-Learning/blob/master/_logs/EXP/BC_im_50Hours_seed1_encoder_finetuning_3FC_5Hours_s1_100000/config.json) example
+   check an example on this [config.json](https://github.com/yixiao1/Action-Based-Representation-Learning/blob/master/_logs/EXP/BC_im_50Hours_seed1_encoder_finetuning_3FC_5Hours_s1_100000/config.json) example
 
 5. To run the benchmark, go to [driving-benchmarks](https://github.com/yixiao1/Action-Based-Representation-Learning/tree/master/driving-benchmarks-carla_09_cexp) folder:
 
