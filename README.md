@@ -10,7 +10,7 @@ We kindly ask to cite our paper if you find this work useful:
  * Yi Xiao, Felipe Codevilla, Christopher Pal, Antonio M. Lopez, [Action-Based Representation Learning for Autonomous Driving](). ArXiv:
 
 ### Video
-Please check our [video](https://drive.google.com/file/d/1kbXF3UtQk70ncDmsI5YQ73QVrENtKU1o/view?usp=sharing) online
+Please check our online [video](https://drive.google.com/file/d/1kbXF3UtQk70ncDmsI5YQ73QVrENtKU1o/view?usp=sharing)
  
 ### Related Publications:
 Our work is built using the following frameworks:
