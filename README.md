@@ -49,14 +49,14 @@ The processes can be defined as four types:
 
 5. Download the CARLA version we used with this [link](https://drive.google.com/file/d/1m4J2yJqL7QcCfaxvMh8erLzdGEyFC5mg/view?usp=sharing), and put it inside your downloaded repository folder
 
-6. Add the following packages to your PYTHONPATH:
+6. To add the following packages to your PYTHONPATH:
 
     - Path to carla
     - Path to carla .egg file
     - Path to scenario_runner
     - Path to carl
 
-    Run:
+    you need to run:
 
         export PYTHONPATH=$ACTIONDIR/Carla96ped4/PythonAPI/carla:$ACTIONDIR/Carla96ped4/PythonAPI/carla/dist/carla-0.9.6-py3.5-linux-x86_64.egg:$ACTIONDIR/scenario_runner:$ACTIONDIR/carl
 
