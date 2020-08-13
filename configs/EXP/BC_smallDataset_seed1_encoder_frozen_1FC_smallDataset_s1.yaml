@@ -28,7 +28,7 @@ TRAIN_DATASET_NAME: 'small_dataset'  # The name of the training dataset used. Mu
 AUGMENTATION: None  # The image augmentation applied on every input image
 DATA_USED: 'central'  # The part of the data to be used
 USE_NOISE_DATA: True  # If we use the noise data.
-EXPERIENCE_FILE: ['/home/yixiao/Action-Based-Representation-Learning/carl/database/small_dataset.json']
+EXPERIENCE_FILE: ['$ACTIONDIR/carl/database/small_dataset.json']
 #### Testing Related Parameters ####
 TEST_SCHEDULE: [1000] # The iterations where training checkpoints are going to be saved
   # The frequency the model is actually tested.
