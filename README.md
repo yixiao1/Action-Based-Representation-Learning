@@ -46,7 +46,7 @@ The processes can be defined as four types:
 
         export ACTIONDIR=$(pwd)
 
-5. Download the CARLA version we used with this [link](https://drive.google.com/file/d/1m4J2yJqL7QcCfaxvMh8erLzdGEyFC5mg/view?usp=sharing), and put it inside your downloaded repository 
+5. Download the CARLA version we used with this [link](https://drive.google.com/file/d/1m4J2yJqL7QcCfaxvMh8erLzdGEyFC5mg/view?usp=sharing), and put it inside your downloaded repository folder
 
 6. Add packages to your PYTHONPATH:
 
