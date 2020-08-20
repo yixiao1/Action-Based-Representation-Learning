@@ -26,7 +26,7 @@ We kindly ask to cite our paper if you find this work useful:
         }
 
 ### Video
-Please check our Youtube online [video](https://www.youtube.com/watch?v=fFywCMlLbyE)
+Please check our online [video](https://www.youtube.com/watch?v=fFywCMlLbyE)
  
 ### Related Publications:
 Our work is built using the following frameworks:
