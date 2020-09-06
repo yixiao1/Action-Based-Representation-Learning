@@ -7,10 +7,18 @@ This repository is for running the experiments of paper: Action-Based Representa
   
 ### Publications
 We kindly ask to cite our paper if you find this work useful:
- * Yi Xiao, Felipe Codevilla, Christopher Pal, Antonio M. Lopez, [Action-Based Representation Learning for Autonomous Driving](). ArXiv:
+ * Yi Xiao, Felipe Codevilla, Christopher Pal, Antonio M. Lopez, [Action-Based Representation Learning for Autonomous Driving](https://arxiv.org/abs/2008.09417).
+ 
+         @article{Xiao2020ActionBasedRL,
+         title={Action-Based Representation Learning for Autonomous Driving},
+         author={Y. Xiao and Felipe Codevilla and C. Pal and Antonio M. L{\'o}pez},
+         journal={ArXiv},
+         year={2020},
+         volume={abs/2008.09417}
+         }
 
 ### Video
-Please check our online [video](https://drive.google.com/file/d/1kbXF3UtQk70ncDmsI5YQ73QVrENtKU1o/view?usp=sharing)
+Please check our online [video](https://www.youtube.com/watch?v=fFywCMlLbyE)
  
 ### Related Publications:
 Our work is built using the following frameworks:
