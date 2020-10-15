@@ -1,0 +1,185 @@
+{
+    "envs": {
+        "ClearNoon_routes_route00003": {
+            "route": {
+                "file": "routes/routes_all.xml",
+                "id": 30214
+            },
+            "scenarios": {
+                "background_activity": {
+                    "cross_factor": 0.1,
+                    "vehicle.*": 100,
+                    "walker.*": 300
+                }
+            },
+            "town_name": "Town01",
+            "vehicle_model": "vehicle.lincoln.mkz2017",
+            "weather_profile": "ClearNoon"
+        },
+        "ClearNoon_routes_route00004": {
+            "route": {
+                "file": "routes/routes_all.xml",
+                "id": 32617
+            },
+            "scenarios": {
+                "background_activity": {
+                    "cross_factor": 0.1,
+                    "vehicle.*": 100,
+                    "walker.*": 300
+                }
+            },
+            "town_name": "Town01",
+            "vehicle_model": "vehicle.lincoln.mkz2017",
+            "weather_profile": "ClearNoon"
+        },
+        "ClearNoon_navigation_route00000_Noise_1": {
+            "repetitions": 1,
+            "route": {
+                "file": "corl2017/Town01_navigation.xml",
+                "id": 0
+            },
+            "scenarios": {
+                "background_activity": {
+                    "cross_factor": 0.01,
+                    "vehicle.*": 80,
+                    "walker.*": 300
+                }
+            },
+            "town_name": "Town01",
+            "vehicle_model": "vehicle.lincoln.mkz2017",
+            "weather_profile": "ClearNoon"
+        },
+        "ClearSunset_routes_route00003": {
+            "route": {
+                "file": "routes/routes_all.xml",
+                "id": 30214
+            },
+            "scenarios": {
+                "background_activity": {
+                    "cross_factor": 0.1,
+                    "vehicle.*": 100,
+                    "walker.*": 300
+                }
+            },
+            "town_name": "Town01",
+            "vehicle_model": "vehicle.lincoln.mkz2017",
+            "weather_profile": "ClearSunset"
+        },
+        "ClearSunset_routes_route00037": {
+            "route": {
+                "file": "routes/routes_all.xml",
+                "id": 42813
+            },
+            "scenarios": {
+                "background_activity": {
+                    "cross_factor": 0.1,
+                    "vehicle.*": 100,
+                    "walker.*": 300
+                }
+            },
+            "town_name": "Town01",
+            "vehicle_model": "vehicle.lincoln.mkz2017",
+            "weather_profile": "ClearSunset"
+        },
+        "ClearSunset_navigation_route00002_Noise_1": {
+            "repetitions": 1,
+            "route": {
+                "file": "corl2017/Town01_navigation.xml",
+                "id": 2
+            },
+            "scenarios": {
+                "background_activity": {
+                    "cross_factor": 0.01,
+                    "vehicle.*": 80,
+                    "walker.*": 300
+                }
+            },
+            "town_name": "Town01",
+            "vehicle_model": "vehicle.lincoln.mkz2017",
+            "weather_profile": "ClearSunset"
+        },
+        "HardRainNoon_routes_route00008": {
+            "route": {
+                "file": "routes/routes_all.xml",
+                "id": 65599
+            },
+            "scenarios": {
+                "background_activity": {
+                    "cross_factor": 0.1,
+                    "vehicle.*": 100,
+                    "walker.*": 300
+                }
+            },
+            "town_name": "Town01",
+            "vehicle_model": "vehicle.lincoln.mkz2017",
+            "weather_profile": "HardRainNoon"
+        },
+        "HardRainNoon_navigation_route00001_Noise_1": {
+            "repetitions": 1,
+            "route": {
+                "file": "corl2017/Town01_navigation.xml",
+                "id": 1
+            },
+            "scenarios": {
+                "background_activity": {
+                    "cross_factor": 0.01,
+                    "vehicle.*": 80,
+                    "walker.*": 300
+                }
+            },
+            "town_name": "Town01",
+            "vehicle_model": "vehicle.lincoln.mkz2017",
+            "weather_profile": "HardRainNoon"
+        },
+        "WetNoon_routes_route00009": {
+            "route": {
+                "file": "routes/routes_all.xml",
+                "id": 33487
+            },
+            "scenarios": {
+                "background_activity": {
+                    "cross_factor": 0.1,
+                    "vehicle.*": 100,
+                    "walker.*": 300
+                }
+            },
+            "town_name": "Town01",
+            "vehicle_model": "vehicle.lincoln.mkz2017",
+            "weather_profile": "WetNoon"
+        },
+        "WetNoon_routes_route00021": {
+            "route": {
+                "file": "routes/routes_all.xml",
+                "id": 41779
+            },
+            "scenarios": {
+                "background_activity": {
+                    "cross_factor": 0.1,
+                    "vehicle.*": 100,
+                    "walker.*": 300
+                }
+            },
+            "town_name": "Town01",
+            "vehicle_model": "vehicle.lincoln.mkz2017",
+            "weather_profile": "WetNoon"
+        },
+        "WetNoon_navigation_route00003_Noise_1": {
+            "repetitions": 1,
+            "route": {
+                "file": "corl2017/Town01_navigation.xml",
+                "id": 3
+            },
+            "scenarios": {
+                "background_activity": {
+                    "cross_factor": 0.01,
+                    "vehicle.*": 80,
+                    "walker.*": 300
+                }
+            },
+            "town_name": "Town01",
+            "vehicle_model": "vehicle.lincoln.mkz2017",
+            "weather_profile": "WetNoon"
+        }
+    },
+    "package_name": "dataset_dynamic_Town01_56Hours"
+}

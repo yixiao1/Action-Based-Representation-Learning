@@ -1,0 +1,15 @@
+{
+    "submission_status": "FINISHED",
+    "stderr": "\n==================================\nCrash message: Traceback (most recent call last):\n  File \"/home/fcodevila/scenario_runner//srunner/challenge/challenge_evaluator_routes.py\", line 1138, in run\n    self.load_environment_and_run(args, world_annotations, route_description)\n  File \"/home/fcodevila/scenario_runner//srunner/challenge/challenge_evaluator_routes.py\", line 1072, in load_environment_and_run\n    self.run_route(_route_description['trajectory'])\n  File \"/home/fcodevila/scenario_runner//srunner/challenge/challenge_evaluator_routes.py\", line 633, in run_route\n    self.timestamp = self.world.wait_for_tick()\nTypeError: __del__() takes 1 positional argument but 3 were given\n\n==[r0:CRASH] [Score = 0.00 : (route_score=0.0, infractions=-0.0)]\n==================================\n\n\n==================================\nCrash message: Traceback (most recent call last):\n  File \"/home/fcodevila/scenario_runner//srunner/challenge/challenge_evaluator_routes.py\", line 1138, in run\n    self.load_environment_and_run(args, world_annotations, route_description)\n  File \"/home/fcodevila/scenario_runner//srunner/challenge/challenge_evaluator_routes.py\", line 1072, in load_environment_and_run\n    self.run_route(_route_description['trajectory'])\n  File \"/home/fcodevila/scenario_runner//srunner/challenge/challenge_evaluator_routes.py\", line 606, in run_route\n    ego_action = self.agent_instance()\n  File \"/home/fcodevila/scenario_runner/srunner/challenge/autoagents/autonomous_agent.py\", line 77, in __call__\n    control = self.run_step(input_data, timestamp)\n  File \"srunner/challenge/autoagents/NPCAgent.py\", line 74, in run_step\n    control = self._agent.run_step()\n  File \"/home/fcodevila/Carla95d/PythonAPI/carla/agents/navigation/basic_agent.py\", line 100, in run_step\n    vehicle_state, vehicle = self._is_vehicle_hazard(vehicle_list)\n  File \"/home/fcodevila/Carla95d/PythonAPI/carla/agents/navigation/agent.py\", line 182, in _is_vehicle_hazard\n    target_vehicle_waypoint = self._map.get_waypoint(target_vehicle.get_location())\nTypeError: __del__() takes 1 positional argument but 3 were given\n\n==[r1:CRASH] [Score = 0.00 : (route_score=0.0, infractions=-0.0)]\n==================================\n\n",
+    "result": [
+        {
+            "split": "dev_split",
+            "show_to_participant": true,
+            "accuracies": {
+                "avg. route points": 0.0,
+                "infraction points": 0.0,
+                "total avg.": 0.0
+            }
+        }
+    ]
+}
