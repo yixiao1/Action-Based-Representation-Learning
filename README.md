@@ -112,7 +112,7 @@ The processes can be defined as four types:
 
 3. Set up PYTHONPATH for CARLA driving:
 
-        export PYTHONPATH=$ACTIONDIR:$ACTIONDIR/cad:$ACTIONDIR/Carla96ped4/PythonAPI/carla:$ACTIONDIR/PythonAPI/carla:$ACTIONDIR/scenario_runner
+        export PYTHONPATH=$ACTIONDIR:$ACTIONDIR/cad:$ACTIONDIR/Carla96ped4/PythonAPI/carla/dist/carla-0.9.6-py3.5-linux-x86_64.egg/:$ACTIONDIR/Carla96ped4/PythonAPI/carla:$ACTIONDIR/scenario_runner
 
 4. Define a config.json for using a specific model, and put it into the directory of your model in _logs folder: _logs/(experiment folder)/(experiment name)
 
