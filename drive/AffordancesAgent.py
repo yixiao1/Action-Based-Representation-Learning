@@ -10,8 +10,6 @@ import scipy
 from torchvision.utils import save_image
 import matplotlib.pyplot as plt
 
-from scipy.misc import imresize
-from drive.affordances import  get_driving_affordances
 from drive.local_planner import LocalPlanner
 from network import CoILModel, EncoderModel
 from coilutils.drive_utils import checkpoint_parse_configuration_file
@@ -295,9 +293,6 @@ class AffordancesAgent(object):
         # Now we consider all target speed to be 20.0
         affordances.update({'target_speed': target_speed})
 
-        #affordances.update({'GT_is_pedestrian_hazard': })
-        #affordances.update({'GT_is_red_tl_hazard': })
-        #affordances.update({'GT_is_vehicle_hazard': })
         gt_relative_angle = compute_relative_angle(self._vehicle, self._local_planner.get_target_waypoint())
         affordances.update({'GT_relative_angle': gt_relative_angle})
         affordances.update(
@@ -318,11 +313,6 @@ class AffordancesAgent(object):
         is_pedestrian_hazard = affordances['is_pedestrian_hazard']
         relative_angle = affordances['relative_angle']
         target_speed = affordances['target_speed']
-        # once we meet a speed limit sign, the target speed changes
-
-        #if target_speed != self._local_planner._target_speed:
-        #    self._local_planner.set_speed(target_speed)
-        #forward_speed = affordances['forward_speed']
         
         if is_vehicle_hazard:
             self._state = AgentState.BLOCKED_BY_VEHICLE
