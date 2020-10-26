@@ -144,12 +144,12 @@ if __name__ == '__main__':
     parser.add_argument('--draw-trajectories', action='store_true',
                         help='Set to draw the trajectories went by the vehicle after the episode')
 
-
     parser.add_argument('--debug', action='store_true', help='Set debug mode')
 
     args = parser.parse_args()
 
-    args.port = find_free_port()
+    if args.port is None:
+        args.port = find_free_port()
 
     # Set mode as debug mode
     if args.debug:
